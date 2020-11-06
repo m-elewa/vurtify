@@ -14,7 +14,7 @@
 
         <div class="jumbotron">
             <h5>Welcome, {{ auth()->user()->email }}</h5>
-            <h1 class="display-3">Bootstrap 4 Laravel Fortify Authentication</h1>
+            <h1 class="display-3">Bootstrap 5 Laravel Fortify Authentication</h1>
             <p class="lead">This is a simple auth starter setup for laravel 8 projects</p>
             <hr class="my-4">
             <h2>Features:</h2>

@@ -18,6 +18,60 @@
         .h-100 {
             height: 100vh !important;
         }
+
+        /* Floating label */
+        .form-label-group {
+          position: relative;
+          margin-bottom: 1rem;
+        }
+
+        .form-label-group input,
+        .form-label-group label {
+          height: 3.125rem;
+          padding: .75rem;
+        }
+
+        .form-label-group label {
+          position: absolute;
+          top: 0;
+          left: 0;
+          display: block;
+          width: 100%;
+          color: #495057;
+          pointer-events: none;
+          cursor: text; /* Match the input under the label */
+          border: 1px solid transparent;
+          border-radius: .25rem;
+          transition: all .1s ease-in-out;
+        }
+
+        .form-label-group input::placeholder {
+          color: transparent;
+        }
+
+        .form-label-group input:not(:placeholder-shown) {
+          padding-top: 1.25rem;
+          padding-bottom: .25rem;
+        }
+
+        .form-label-group input:not(:placeholder-shown) ~ label {
+          padding-top: .25rem;
+          padding-bottom: .25rem;
+          font-size: 12px;
+          color: #777;
+        }
+
+        .form-label-group input:focus ~ label {
+          padding-top: .25rem;
+          padding-bottom: .25rem;
+          font-size: 12px;
+          color: #777;
+        }
+
+        .form-label-group input:focus {
+          padding-top: 1.25rem;
+          padding-bottom: .25rem;
+        }
     </style>
 
     <!-- Scripts -->
@@ -28,55 +82,38 @@
     <div class="h-100 d-flex flex-column" id="app">
 
         <!-- Navbar -->
-        <nav class="navbar navbar-expand-md navbar-dark bg-primary">
-            <div class="container">
-                <a class="navbar-brand" href="{{ url('/') }}">
-                    {{ config('app.name', 'Laravel') }}
+        <x-layouts.header>
+            <li class="nav-item dropdown">
+                <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button"
+                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                    {{ Auth::user()->name }}
                 </a>
-                <button class="navbar-toggler" type="button" data-toggle="collapse"
-                    data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
-                    aria-label="{{ __('Toggle navigation') }}">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
 
-                <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                    <!-- Left Side Of Navbar -->
-                    <ul class="navbar-nav mr-auto">
+                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                    <a class="dropdown-item" href="{{ route('dashboard') }}">
+                        {{ __('Dashboard') }}
+                    </a>
+                    <a class="dropdown-item" href="{{ route('profile.edit') }}">
+                        {{ __('Profile') }}
+                    </a>
+                    <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();
+                                             document.getElementById('logout-form').submit();">
+                        {{ __('Logout') }}
+                    </a>
 
-                    </ul>
-
-                    <!-- Right Side Of Navbar -->
-                    <ul class="navbar-nav ml-auto">
-                        <!-- Authentication Links -->
-                        <li class="nav-item dropdown">
-                            <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button"
-                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                                {{ Auth::user()->name }}
-                            </a>
-
-                            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                                <a class="dropdown-item" href="{{ route('dashboard') }}">
-                                    {{ __('Dashboard') }}
-                                </a>
-                                <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();
-                                                         document.getElementById('logout-form').submit();">
-                                    {{ __('Logout') }}
-                                </a>
-
-                                <form id="logout-form" action="{{ route('logout') }}" method="POST"
-                                    class="d-none">
-                                    @csrf
-                                </form>
-                            </div>
-                        </li>
-                    </ul>
+                    <form id="logout-form" action="{{ route('logout') }}" method="POST"
+                        class="d-none">
+                        @csrf
+                    </form>
                 </div>
-            </div>
-        </nav> <!-- / Navbar -->
+            </li>
+        </x-layouts.header> <!-- / Navbar -->
 
-        <header class="bg-light text-muted shadow text-center py-4">
-            {{ $header }}
-        </header>
+        @isset($header)
+            <header class="bg-light text-muted shadow text-center py-4">
+                {{ $header }}
+            </header>
+        @endisset
 
         <main class="py-4">
             {{ $slot }}
