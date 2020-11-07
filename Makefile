@@ -3,7 +3,7 @@
 
 # the first target is the one that executed by default
 # run all containers (workspace php-fpm nginx mysql phpmyadmin
-# portainer docker-in-docker)
+# portainer docker-in-docker mailhog)
 up:
 	@cd laradock && sudo docker-compose up -d --build
 

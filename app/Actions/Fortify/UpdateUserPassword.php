@@ -19,7 +19,7 @@ class UpdateUserPassword implements UpdatesUserPasswords
      */
     public function update($user, array $input)
     {
-        Validator::make($input, [
+        $validator = Validator::make($input, [
             'current_password' => ['required', 'string'],
             'password' => $this->passwordRules(),
         ])->after(function ($validator) use ($user, $input) {
@@ -28,8 +28,14 @@ class UpdateUserPassword implements UpdatesUserPasswords
             }
         })->validateWithBag('updatePassword');
 
+        if(optional($validator)->fails()){
+            return back()->withErrors($validator);
+        }
+
         $user->forceFill([
             'password' => Hash::make($input['password']),
         ])->save();
+
+        return back()->with('status-success', 'Password Updated!');
     }
 }
