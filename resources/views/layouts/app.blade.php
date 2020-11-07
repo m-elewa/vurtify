@@ -116,6 +116,23 @@
         @endisset
 
         <main class="py-4">
+            @if(session('status-success'))
+                <div class="container">
+                    <div class="alert alert-success alert-dismissible fade show" role="alert">
+                        {{ session('status-success') }}
+                        <button type="button" class="btn-close" data-dismiss="alert" aria-label="Close"></button>
+                    </div>
+                </div>
+            @endif
+            @if(session('status-fail'))
+                <div class="container">
+                    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                        {{ session('status-fail') }}
+                        <button type="button" class="btn-close" data-dismiss="alert" aria-label="Close"></button>
+                    </div>
+                </div>
+            @endif
+
             {{ $slot }}
         </main>
 
