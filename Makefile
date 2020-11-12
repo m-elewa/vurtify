@@ -27,6 +27,7 @@ down:
 	@cd laradock && docker-compose down
 
 # execute a command on the container
+# usage example: make exec command="npm run dev"
 exec:
 ifndef command
 	$(error command is required)

@@ -8,98 +8,25 @@
 
     <title>{{ config('app.name', 'Laravel') }}</title>
 
-    <!-- Fonts -->
-    <link rel="dns-prefetch" href="//fonts.gstatic.com">
-    <link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@400;600&display=swap" rel="stylesheet">
-
     <!-- Styles -->
-    <link rel="stylesheet" href="{{ mix('css/app.css') }}">
+    <link rel="stylesheet" href="{{ mix('guest/styles.css') }}">
 
     <!-- Scripts -->
-    <script src="{{ mix('js/app.js') }}"></script>
-    <style>
-        .h-100 {
-            height: 100vh !important;
-        }
-
-        /* Floating label */
-        .form-label-group {
-          position: relative;
-          margin-bottom: 1rem;
-        }
-
-        .form-label-group input,
-        .form-label-group label {
-          height: 3.125rem;
-          padding: .75rem;
-        }
-
-        .form-label-group label {
-          position: absolute;
-          top: 0;
-          left: 0;
-          display: block;
-          width: 100%;
-          color: #495057;
-          pointer-events: none;
-          cursor: text; /* Match the input under the label */
-          border: 1px solid transparent;
-          border-radius: .25rem;
-          transition: all .1s ease-in-out;
-        }
-
-        .form-label-group input::placeholder {
-          color: transparent;
-        }
-
-        .form-label-group input:not(:placeholder-shown) {
-          padding-top: 1.25rem;
-          padding-bottom: .25rem;
-        }
-
-        .form-label-group input:not(:placeholder-shown) ~ label {
-          padding-top: .25rem;
-          padding-bottom: .25rem;
-          font-size: 12px;
-          color: #777;
-        }
-
-        .form-label-group input:focus ~ label {
-          padding-top: .25rem;
-          padding-bottom: .25rem;
-          font-size: 12px;
-          color: #777;
-        }
-
-        .form-label-group input:focus {
-          padding-top: 1.25rem;
-          padding-bottom: .25rem;
-        }
-    </style>
+    <script src="{{ mix('guest/scripts.js') }}"></script>
 </head>
 
-<body class="h-100">
+<body>
     <div class="h-100 d-flex flex-column" id="app">
 
         <!-- Navbar -->
-        <x-layouts.header>
-            <!-- Authentication Links -->
-            <li class="nav-item">
-                <a class="nav-link"
-                    href="{{ route('login') }}">{{ __('Login') }}</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link"
-                    href="{{ route('register') }}">{{ __('Register') }}</a>
-            </li>
-        </x-layouts.header> <!-- / Navbar -->
+        <x-layouts.guest.header />
 
         <main class="py-4 mt-auto">
             {{ $slot }}
         </main>
 
         <!-- Footer -->
-        <x-layouts.footer />
+        <x-layouts.guest.footer />
     </div>
 
 </html>

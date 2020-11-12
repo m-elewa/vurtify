@@ -1,11 +1,10 @@
-<x-app-layout>
+<x-guest-layout>
     <div class="container my-auto pb-5">
         <div class="row justify-content-center">
             <div class="col-md-4">
-                <div class="card">
-                    <div class="card-header">{{ __('Confirm Password') }}</div>
-
+                <div class="card pb-3">
                     <div class="card-body">
+                        <h2 class="card-title text-center py-4">{{ __('Confirm Password') }}</h2>
                         <div class="card-title">
                             {{ __('For your security, please confirm your password to continue.') }}
                         </div>
@@ -40,4 +39,4 @@
             </div>
         </div>
     </div>
-</x-app-layout>
+</x-guest-layout>

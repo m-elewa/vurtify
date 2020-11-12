@@ -1,0 +1,18 @@
+// Fonts
+// @import url('https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@400;600&display=swap');
+@import url('https://fonts.googleapis.com/css?family=Montserrat:400,700');
+@import url('https://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic');
+
+// Import custom variables and override default Bootstrap variables
+@import "variables";
+
+// Import Bootstrap v5.0.0-alpha2
+@import "~bootstrap/scss/bootstrap";
+
+// Import custom styles
+@import "global.scss";
+@import "navbar.scss";
+@import "masthead.scss";
+@import "divider.scss";
+@import "footer.scss";
+@import "buttons.scss";

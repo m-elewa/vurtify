@@ -8,116 +8,25 @@
 
     <title>{{ config('app.name', 'Laravel') }}</title>
 
-    <!-- Fonts -->
-    <link rel="dns-prefetch" href="//fonts.gstatic.com">
-    <link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@400;600&display=swap" rel="stylesheet">
+    <!-- Font Awesome icons (free version)-->
+    <script src="https://use.fontawesome.com/releases/v5.15.1/js/all.js" crossorigin="anonymous"></script>
 
     <!-- Styles -->
-    <link rel="stylesheet" href="{{ mix('css/app.css') }}">
-    <style>
-        .h-100 {
-            height: 100vh !important;
-        }
-
-        /* Floating label */
-        .form-label-group {
-          position: relative;
-          margin-bottom: 1rem;
-        }
-
-        .form-label-group input,
-        .form-label-group label {
-          height: 3.125rem;
-          padding: .75rem;
-        }
-
-        .form-label-group label {
-          position: absolute;
-          top: 0;
-          left: 0;
-          display: block;
-          width: 100%;
-          color: #495057;
-          pointer-events: none;
-          cursor: text; /* Match the input under the label */
-          border: 1px solid transparent;
-          border-radius: .25rem;
-          transition: all .1s ease-in-out;
-        }
-
-        .form-label-group input::placeholder {
-          color: transparent;
-        }
-
-        .form-label-group input:not(:placeholder-shown) {
-          padding-top: 1.25rem;
-          padding-bottom: .25rem;
-        }
-
-        .form-label-group input:not(:placeholder-shown) ~ label {
-          padding-top: .25rem;
-          padding-bottom: .25rem;
-          font-size: 12px;
-          color: #777;
-        }
-
-        .form-label-group input:focus ~ label {
-          padding-top: .25rem;
-          padding-bottom: .25rem;
-          font-size: 12px;
-          color: #777;
-        }
-
-        .form-label-group input:focus {
-          padding-top: 1.25rem;
-          padding-bottom: .25rem;
-        }
-    </style>
+    <link rel="stylesheet" href="{{ mix('app/styles.css') }}">
 
     <!-- Scripts -->
-    <script src="{{ mix('js/app.js') }}"></script>
+    <script src="{{ mix('app/scripts.js') }}"></script>
 </head>
 
-<body class="h-100">
+<body>
     <div class="h-100 d-flex flex-column" id="app">
 
         <!-- Navbar -->
-        <x-layouts.header>
-            <li class="nav-item dropdown">
-                <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button"
-                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                    {{ Auth::user()->name }}
-                </a>
+        <x-layouts.app.header />
 
-                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                    <a class="dropdown-item" href="{{ route('dashboard') }}">
-                        {{ __('Dashboard') }}
-                    </a>
-                    <a class="dropdown-item" href="{{ route('profile.edit') }}">
-                        {{ __('Profile') }}
-                    </a>
-                    <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();
-                                             document.getElementById('logout-form').submit();">
-                        {{ __('Logout') }}
-                    </a>
-
-                    <form id="logout-form" action="{{ route('logout') }}" method="POST"
-                        class="d-none">
-                        @csrf
-                    </form>
-                </div>
-            </li>
-        </x-layouts.header> <!-- / Navbar -->
-
-        @isset($header)
-            <header class="bg-light text-muted shadow text-center py-4">
-                {{ $header }}
-            </header>
-        @endisset
-
-        <main class="py-4">
+        <main>
             @if(session('status-success'))
-                <div class="container">
+                <div class="container py-3">
                     <div class="alert alert-success alert-dismissible fade show" role="alert">
                         {{ session('status-success') }}
                         <button type="button" class="btn-close" data-dismiss="alert" aria-label="Close"></button>
@@ -125,7 +34,7 @@
                 </div>
             @endif
             @if(session('status-fail'))
-                <div class="container">
+                <div class="container py-3">
                     <div class="alert alert-danger alert-dismissible fade show" role="alert">
                         {{ session('status-fail') }}
                         <button type="button" class="btn-close" data-dismiss="alert" aria-label="Close"></button>
@@ -137,7 +46,7 @@
         </main>
 
         <!-- Footer -->
-        <x-layouts.footer />
+        <x-layouts.app.footer />
     </div>
 
 </html>
