@@ -19,7 +19,7 @@
         "resolve-url-loader": "^3.1.0"
     },
     "dependencies": {
-        "bootstrap": "^5.0.0-alpha2",
+        "bootstrap": "^5.0.0-alpha3",
         "sass": "^1.28.0",
         "sass-loader": "^10.0.5",
         "vue": "^2.6.12",
