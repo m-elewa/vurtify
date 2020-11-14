@@ -1,0 +1,26 @@
+// styling for profile photo
+.profile-photo {
+    cursor: pointer;
+    position: relative;
+    display: block;
+    max-width: 25rem;
+    border-radius: $border-radius;
+    overflow: hidden;
+
+    .profile-photo-caption {
+        position: absolute;
+        top: 0;
+        left: 0;
+        transition: $transition-base;
+        opacity: 0;
+        background-color: fade-out($primary, 0.1);
+
+        &:hover {
+            opacity: 1;
+        }
+
+        .profile-photo-caption-content {
+            font-size: 1.5rem;
+        }
+    }
+}

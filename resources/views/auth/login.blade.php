@@ -1,14 +1,14 @@
 <x-guest-layout>
     <div class="container my-auto pb-5">
         <div class="row justify-content-center">
-            <div class="col-md-4">
+            <div class="col-lg-4">
                 <div class="card pb-3">
                     <div class="card-body">
                         <h2 class="card-title text-center py-4">{{ __('Login') }}</h2>
                         <form method="POST" action="{{ route('login') }}">
                             @csrf
 
-                            <div class="form-label-group">
+                            <div class="custom-form-floating">
                                 <input id="email" type="email" class="form-control @error('email') is-invalid @enderror"
                                     name="email" value="{{ old('email') }}" required
                                     autocomplete="email" autofocus placeholder="E-Mail Address">
@@ -21,7 +21,7 @@
                                 @enderror
                             </div>
 
-                            <div class="form-label-group">
+                            <div class="custom-form-floating">
                                 <input id="password" type="password"
                                     class="form-control @error('password') is-invalid @enderror" name="password"
                                     required autocomplete="current-password" placeholder="Password">

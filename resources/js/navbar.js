@@ -1,4 +1,4 @@
-document.addEventListener("DOMContentLoaded", function(){
+window.addEventListener("DOMContentLoaded", function(){
     var navbarCollapse = function () {
         var nav = document.getElementById("mainNav");
         if (window.scrollY > 100) {
@@ -7,6 +7,7 @@ document.addEventListener("DOMContentLoaded", function(){
             nav.classList.remove("navbar-shrink");
         }
     };
+
     navbarCollapse();
     window.addEventListener("scroll", navbarCollapse);
 });

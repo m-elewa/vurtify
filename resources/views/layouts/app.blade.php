@@ -18,35 +18,20 @@
     <script src="{{ mix('app/scripts.js') }}"></script>
 </head>
 
-<body>
-    <div class="h-100 d-flex flex-column" id="app">
+<body class="position-relative">
+    {{-- Toasts --}}
+    <x-layouts.app.toasts />
 
+    <div class="h-100 d-flex flex-column" id="app">
         <!-- Navbar -->
         <x-layouts.app.header />
 
         <main>
-            @if(session('status-success'))
-                <div class="container py-3">
-                    <div class="alert alert-success alert-dismissible fade show" role="alert">
-                        {{ session('status-success') }}
-                        <button type="button" class="btn-close" data-dismiss="alert" aria-label="Close"></button>
-                    </div>
-                </div>
-            @endif
-            @if(session('status-fail'))
-                <div class="container py-3">
-                    <div class="alert alert-danger alert-dismissible fade show" role="alert">
-                        {{ session('status-fail') }}
-                        <button type="button" class="btn-close" data-dismiss="alert" aria-label="Close"></button>
-                    </div>
-                </div>
-            @endif
-
+            <x-layouts.session-alerts />
             {{ $slot }}
         </main>
 
         <!-- Footer -->
         <x-layouts.app.footer />
     </div>
-
 </html>

@@ -18,18 +18,32 @@ class UpdateUserProfileInformation implements UpdatesUserProfileInformation
      */
     public function update($user, array $input)
     {
-        $validator = Validator::make($input, [
-            'name' => ['required', 'string', 'max:255'],
-            'email' => ['required', 'email', 'max:255', Rule::unique('users')->ignore($user->id)],
-            'photo' => ['nullable', 'image', 'max:1024'],
-            ])->validateWithBag('profile');
+        if(isset($input['type']) && $input['type'] == "photo"){
+            // profile photo validator
+            $validator = Validator::make($input, [
+                'photo' => ['required', 'image', 'max:1024'],
+            ]);
 
-        if(optional($validator)->fails()){
-            return back()->withErrors($validator);
+            if(optional($validator)->fails()){
+                return back()->with('status-fail-toast', 'Please select a valid image file!')
+                    ->withErrors($validator, 'profilePhoto');
+            }
+
+        } else {
+            // account info validator
+            $validator = Validator::make($input, [
+                'name' => ['required', 'string', 'max:255'],
+                'email' => ['required', 'email', 'max:255', Rule::unique('users')->ignore($user->id)],
+            ]);
+
+            if(optional($validator)->fails()){
+                return back()->withErrors($validator. 'profile');
+            }
         }
 
         if (isset($input['photo'])) {
             $user->updateProfilePhoto($input['photo']);
+            return back()->with('status-success-toast', 'Profile photo Uploaded!');
         }
 
         if ($input['email'] !== $user->email &&
@@ -42,7 +56,7 @@ class UpdateUserProfileInformation implements UpdatesUserProfileInformation
             ])->save();
         }
 
-        return back()->with('status-success', 'Profile Updated!');
+        return back()->with('status-success-toast', 'Profile Updated!');
     }
 
     /**

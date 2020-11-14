@@ -20,6 +20,7 @@
 
         <!-- Navbar -->
         <x-layouts.guest.header />
+        <x-layouts.session-alerts />
 
         <main class="py-4 mt-auto">
             {{ $slot }}
@@ -28,5 +29,4 @@
         <!-- Footer -->
         <x-layouts.guest.footer />
     </div>
-
 </html>

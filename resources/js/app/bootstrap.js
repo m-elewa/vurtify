@@ -8,8 +8,11 @@ window._ = require('lodash');
 
 try {
     window.Popper = require('popper.js').default;
-    require('bootstrap');
-    require('../navbarScripts');
+    window.bootstrap = require('bootstrap');
+
+    // custom scripts
+    require('../navbar');
+    require('./toasts');
 } catch (e) {}
 
 /**

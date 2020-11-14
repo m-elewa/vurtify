@@ -108,7 +108,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "Tooltip", function() { return Tooltip; });
 /* harmony import */ var popper_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! popper.js */ "./node_modules/popper.js/dist/esm/popper.js");
 /*!
-  * Bootstrap v5.0.0-alpha2 (https://getbootstrap.com/)
+  * Bootstrap v5.0.0-alpha3 (https://getbootstrap.com/)
   * Copyright 2011-2020 The Bootstrap Authors (https://github.com/twbs/bootstrap/graphs/contributors)
   * Licensed under MIT (https://github.com/twbs/bootstrap/blob/main/LICENSE)
   */
@@ -156,7 +156,7 @@ function _inheritsLoose(subClass, superClass) {
 
 /**
  * --------------------------------------------------------------------------
- * Bootstrap (v5.0.0-alpha2): util/index.js
+ * Bootstrap (v5.0.0-alpha3): util/index.js
  * Licensed under MIT (https://github.com/twbs/bootstrap/blob/main/LICENSE)
  * --------------------------------------------------------------------------
  */
@@ -329,9 +329,17 @@ var getjQuery = function getjQuery() {
   return null;
 };
 
+var onDOMContentLoaded = function onDOMContentLoaded(callback) {
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', callback);
+  } else {
+    callback();
+  }
+};
+
 /**
  * --------------------------------------------------------------------------
- * Bootstrap (v5.0.0-alpha2): dom/data.js
+ * Bootstrap (v5.0.0-alpha3): dom/data.js
  * Licensed under MIT (https://github.com/twbs/bootstrap/blob/main/LICENSE)
  * --------------------------------------------------------------------------
  */
@@ -396,81 +404,9 @@ var Data = {
   }
 };
 
-/* istanbul ignore file */
-var find = Element.prototype.querySelectorAll;
-var findOne = Element.prototype.querySelector; // MSEdge resets defaultPrevented flag upon dispatchEvent call if at least one listener is attached
-
-var defaultPreventedPreservedOnDispatch = function () {
-  var e = new CustomEvent('Bootstrap', {
-    cancelable: true
-  });
-  var element = document.createElement('div');
-  element.addEventListener('Bootstrap', function () {
-    return null;
-  });
-  e.preventDefault();
-  element.dispatchEvent(e);
-  return e.defaultPrevented;
-}();
-
-var scopeSelectorRegex = /:scope\b/;
-
-var supportScopeQuery = function () {
-  var element = document.createElement('div');
-
-  try {
-    element.querySelectorAll(':scope *');
-  } catch (_) {
-    return false;
-  }
-
-  return true;
-}();
-
-if (!supportScopeQuery) {
-  find = function find(selector) {
-    if (!scopeSelectorRegex.test(selector)) {
-      return this.querySelectorAll(selector);
-    }
-
-    var hasId = Boolean(this.id);
-
-    if (!hasId) {
-      this.id = getUID('scope');
-    }
-
-    var nodeList = null;
-
-    try {
-      selector = selector.replace(scopeSelectorRegex, "#" + this.id);
-      nodeList = this.querySelectorAll(selector);
-    } finally {
-      if (!hasId) {
-        this.removeAttribute('id');
-      }
-    }
-
-    return nodeList;
-  };
-
-  findOne = function findOne(selector) {
-    if (!scopeSelectorRegex.test(selector)) {
-      return this.querySelector(selector);
-    }
-
-    var matches = find.call(this, selector);
-
-    if (typeof matches[0] !== 'undefined') {
-      return matches[0];
-    }
-
-    return null;
-  };
-}
-
 /**
  * --------------------------------------------------------------------------
- * Bootstrap (v5.0.0-alpha2): dom/event-handler.js
+ * Bootstrap (v5.0.0-alpha3): dom/event-handler.js
  * Licensed under MIT (https://github.com/twbs/bootstrap/blob/main/LICENSE)
  * --------------------------------------------------------------------------
  */
@@ -480,7 +416,6 @@ if (!supportScopeQuery) {
  * ------------------------------------------------------------------------
  */
 
-var $ = getjQuery();
 var namespaceRegex = /[^.]*(?=\..*)\.|.*/;
 var stripNameRegex = /\..*/;
 var stripUidRegex = /::\d+$/;
@@ -689,6 +624,7 @@ var EventHandler = {
       return null;
     }
 
+    var $ = getjQuery();
     var typeEvent = event.replace(stripNameRegex, '');
     var inNamespace = event !== typeEvent;
     var isNative = nativeEvents.indexOf(typeEvent) > -1;
@@ -729,14 +665,6 @@ var EventHandler = {
 
     if (defaultPrevented) {
       evt.preventDefault();
-
-      if (!defaultPreventedPreservedOnDispatch) {
-        Object.defineProperty(evt, 'defaultPrevented', {
-          get: function get() {
-            return true;
-          }
-        });
-      }
     }
 
     if (nativeDispatch) {
@@ -758,7 +686,7 @@ var EventHandler = {
  */
 
 var NAME = 'alert';
-var VERSION = '5.0.0-alpha2';
+var VERSION = '5.0.0-alpha3';
 var DATA_KEY = 'bs.alert';
 var EVENT_KEY = "." + DATA_KEY;
 var DATA_API_KEY = '.data-api';
@@ -886,26 +814,28 @@ var Alert = /*#__PURE__*/function () {
 
 
 EventHandler.on(document, EVENT_CLICK_DATA_API, SELECTOR_DISMISS, Alert.handleDismiss(new Alert()));
-var $$1 = getjQuery();
 /**
  * ------------------------------------------------------------------------
  * jQuery
  * ------------------------------------------------------------------------
- * add .alert to jQuery only if jQuery is present
+ * add .Alert to jQuery only if jQuery is present
  */
 
-/* istanbul ignore if */
+onDOMContentLoaded(function () {
+  var $ = getjQuery();
+  /* istanbul ignore if */
 
-if ($$1) {
-  var JQUERY_NO_CONFLICT = $$1.fn[NAME];
-  $$1.fn[NAME] = Alert.jQueryInterface;
-  $$1.fn[NAME].Constructor = Alert;
+  if ($) {
+    var JQUERY_NO_CONFLICT = $.fn[NAME];
+    $.fn[NAME] = Alert.jQueryInterface;
+    $.fn[NAME].Constructor = Alert;
 
-  $$1.fn[NAME].noConflict = function () {
-    $$1.fn[NAME] = JQUERY_NO_CONFLICT;
-    return Alert.jQueryInterface;
-  };
-}
+    $.fn[NAME].noConflict = function () {
+      $.fn[NAME] = JQUERY_NO_CONFLICT;
+      return Alert.jQueryInterface;
+    };
+  }
+});
 
 /**
  * ------------------------------------------------------------------------
@@ -914,7 +844,7 @@ if ($$1) {
  */
 
 var NAME$1 = 'button';
-var VERSION$1 = '5.0.0-alpha2';
+var VERSION$1 = '5.0.0-alpha3';
 var DATA_KEY$1 = 'bs.button';
 var EVENT_KEY$1 = "." + DATA_KEY$1;
 var DATA_API_KEY$1 = '.data-api';
@@ -993,30 +923,32 @@ EventHandler.on(document, EVENT_CLICK_DATA_API$1, SELECTOR_DATA_TOGGLE, function
 
   data.toggle();
 });
-var $$2 = getjQuery();
 /**
  * ------------------------------------------------------------------------
  * jQuery
  * ------------------------------------------------------------------------
- * add .button to jQuery only if jQuery is present
+ * add .Button to jQuery only if jQuery is present
  */
 
-/* istanbul ignore if */
+onDOMContentLoaded(function () {
+  var $ = getjQuery();
+  /* istanbul ignore if */
 
-if ($$2) {
-  var JQUERY_NO_CONFLICT$1 = $$2.fn[NAME$1];
-  $$2.fn[NAME$1] = Button.jQueryInterface;
-  $$2.fn[NAME$1].Constructor = Button;
+  if ($) {
+    var JQUERY_NO_CONFLICT = $.fn[NAME$1];
+    $.fn[NAME$1] = Button.jQueryInterface;
+    $.fn[NAME$1].Constructor = Button;
 
-  $$2.fn[NAME$1].noConflict = function () {
-    $$2.fn[NAME$1] = JQUERY_NO_CONFLICT$1;
-    return Button.jQueryInterface;
-  };
-}
+    $.fn[NAME$1].noConflict = function () {
+      $.fn[NAME$1] = JQUERY_NO_CONFLICT;
+      return Button.jQueryInterface;
+    };
+  }
+});
 
 /**
  * --------------------------------------------------------------------------
- * Bootstrap (v5.0.0-alpha2): dom/manipulator.js
+ * Bootstrap (v5.0.0-alpha3): dom/manipulator.js
  * Licensed under MIT (https://github.com/twbs/bootstrap/blob/main/LICENSE)
  * --------------------------------------------------------------------------
  */
@@ -1080,52 +1012,41 @@ var Manipulator = {
       top: element.offsetTop,
       left: element.offsetLeft
     };
-  },
-  toggleClass: function toggleClass(element, className) {
-    if (!element) {
-      return;
-    }
-
-    if (element.classList.contains(className)) {
-      element.classList.remove(className);
-    } else {
-      element.classList.add(className);
-    }
   }
 };
 
 /**
  * --------------------------------------------------------------------------
- * Bootstrap (v5.0.0-alpha2): dom/selector-engine.js
+ * Bootstrap (v5.0.0-alpha3): dom/selector-engine.js
  * Licensed under MIT (https://github.com/twbs/bootstrap/blob/main/LICENSE)
  * --------------------------------------------------------------------------
  */
+
 /**
  * ------------------------------------------------------------------------
  * Constants
  * ------------------------------------------------------------------------
  */
-
 var NODE_TEXT = 3;
 var SelectorEngine = {
   matches: function matches(element, selector) {
     return element.matches(selector);
   },
-  find: function find$1(selector, element) {
+  find: function find(selector, element) {
     var _ref;
 
     if (element === void 0) {
       element = document.documentElement;
     }
 
-    return (_ref = []).concat.apply(_ref, find.call(element, selector));
+    return (_ref = []).concat.apply(_ref, Element.prototype.querySelectorAll.call(element, selector));
   },
-  findOne: function findOne$1(selector, element) {
+  findOne: function findOne(selector, element) {
     if (element === void 0) {
       element = document.documentElement;
     }
 
-    return findOne.call(element, selector);
+    return Element.prototype.querySelector.call(element, selector);
   },
   children: function children(element, selector) {
     var _ref2;
@@ -1185,7 +1106,7 @@ var SelectorEngine = {
  */
 
 var NAME$2 = 'carousel';
-var VERSION$2 = '5.0.0-alpha2';
+var VERSION$2 = '5.0.0-alpha3';
 var DATA_KEY$2 = 'bs.carousel';
 var EVENT_KEY$2 = "." + DATA_KEY$2;
 var DATA_API_KEY$2 = '.data-api';
@@ -1323,6 +1244,8 @@ var Carousel = /*#__PURE__*/function () {
     }
 
     if (this._config && this._config.interval && !this._isPaused) {
+      this._updateInterval();
+
       this._interval = setInterval((document.visibilityState ? this.nextWhenVisible : this.next).bind(this), this._config.interval);
     }
   };
@@ -1564,6 +1487,23 @@ var Carousel = /*#__PURE__*/function () {
     }
   };
 
+  _proto._updateInterval = function _updateInterval() {
+    var element = this._activeElement || SelectorEngine.findOne(SELECTOR_ACTIVE_ITEM, this._element);
+
+    if (!element) {
+      return;
+    }
+
+    var elementInterval = parseInt(element.getAttribute('data-interval'), 10);
+
+    if (elementInterval) {
+      this._config.defaultInterval = this._config.defaultInterval || this._config.interval;
+      this._config.interval = elementInterval;
+    } else {
+      this._config.interval = this._config.defaultInterval || this._config.interval;
+    }
+  };
+
   _proto._slide = function _slide(direction, element) {
     var _this4 = this;
 
@@ -1614,20 +1554,13 @@ var Carousel = /*#__PURE__*/function () {
 
     this._setActiveIndicatorElement(nextElement);
 
+    this._activeElement = nextElement;
+
     if (this._element.classList.contains(CLASS_NAME_SLIDE)) {
       nextElement.classList.add(orderClassName);
       reflow(nextElement);
       activeElement.classList.add(directionalClassName);
       nextElement.classList.add(directionalClassName);
-      var nextElementInterval = parseInt(nextElement.getAttribute('data-interval'), 10);
-
-      if (nextElementInterval) {
-        this._config.defaultInterval = this._config.defaultInterval || this._config.interval;
-        this._config.interval = nextElementInterval;
-      } else {
-        this._config.interval = this._config.defaultInterval || this._config.interval;
-      }
-
       var transitionDuration = getTransitionDurationFromElement(activeElement);
       EventHandler.one(activeElement, TRANSITION_END, function () {
         nextElement.classList.remove(directionalClassName, orderClassName);
@@ -1754,26 +1687,28 @@ EventHandler.on(window, EVENT_LOAD_DATA_API, function () {
     Carousel.carouselInterface(carousels[i], Data.getData(carousels[i], DATA_KEY$2));
   }
 });
-var $$3 = getjQuery();
 /**
  * ------------------------------------------------------------------------
  * jQuery
  * ------------------------------------------------------------------------
- * add .carousel to jQuery only if jQuery is present
+ * add .Carousel to jQuery only if jQuery is present
  */
 
-/* istanbul ignore if */
+onDOMContentLoaded(function () {
+  var $ = getjQuery();
+  /* istanbul ignore if */
 
-if ($$3) {
-  var JQUERY_NO_CONFLICT$2 = $$3.fn[NAME$2];
-  $$3.fn[NAME$2] = Carousel.jQueryInterface;
-  $$3.fn[NAME$2].Constructor = Carousel;
+  if ($) {
+    var JQUERY_NO_CONFLICT = $.fn[NAME$2];
+    $.fn[NAME$2] = Carousel.jQueryInterface;
+    $.fn[NAME$2].Constructor = Carousel;
 
-  $$3.fn[NAME$2].noConflict = function () {
-    $$3.fn[NAME$2] = JQUERY_NO_CONFLICT$2;
-    return Carousel.jQueryInterface;
-  };
-}
+    $.fn[NAME$2].noConflict = function () {
+      $.fn[NAME$2] = JQUERY_NO_CONFLICT;
+      return Carousel.jQueryInterface;
+    };
+  }
+});
 
 /**
  * ------------------------------------------------------------------------
@@ -1782,7 +1717,7 @@ if ($$3) {
  */
 
 var NAME$3 = 'collapse';
-var VERSION$3 = '5.0.0-alpha2';
+var VERSION$3 = '5.0.0-alpha3';
 var DATA_KEY$3 = 'bs.collapse';
 var EVENT_KEY$3 = "." + DATA_KEY$3;
 var DATA_API_KEY$3 = '.data-api';
@@ -2154,26 +2089,28 @@ EventHandler.on(document, EVENT_CLICK_DATA_API$3, SELECTOR_DATA_TOGGLE$1, functi
     Collapse.collapseInterface(element, config);
   });
 });
-var $$4 = getjQuery();
 /**
  * ------------------------------------------------------------------------
  * jQuery
  * ------------------------------------------------------------------------
- * add .collapse to jQuery only if jQuery is present
+ * add .Collapse to jQuery only if jQuery is present
  */
 
-/* istanbul ignore if */
+onDOMContentLoaded(function () {
+  var $ = getjQuery();
+  /* istanbul ignore if */
 
-if ($$4) {
-  var JQUERY_NO_CONFLICT$3 = $$4.fn[NAME$3];
-  $$4.fn[NAME$3] = Collapse.jQueryInterface;
-  $$4.fn[NAME$3].Constructor = Collapse;
+  if ($) {
+    var JQUERY_NO_CONFLICT = $.fn[NAME$3];
+    $.fn[NAME$3] = Collapse.jQueryInterface;
+    $.fn[NAME$3].Constructor = Collapse;
 
-  $$4.fn[NAME$3].noConflict = function () {
-    $$4.fn[NAME$3] = JQUERY_NO_CONFLICT$3;
-    return Collapse.jQueryInterface;
-  };
-}
+    $.fn[NAME$3].noConflict = function () {
+      $.fn[NAME$3] = JQUERY_NO_CONFLICT;
+      return Collapse.jQueryInterface;
+    };
+  }
+});
 
 /**
  * ------------------------------------------------------------------------
@@ -2182,7 +2119,7 @@ if ($$4) {
  */
 
 var NAME$4 = 'dropdown';
-var VERSION$4 = '5.0.0-alpha2';
+var VERSION$4 = '5.0.0-alpha3';
 var DATA_KEY$4 = 'bs.dropdown';
 var EVENT_KEY$4 = "." + DATA_KEY$4;
 var DATA_API_KEY$4 = '.data-api';
@@ -2335,8 +2272,10 @@ var Dropdown = /*#__PURE__*/function () {
 
     this._element.setAttribute('aria-expanded', true);
 
-    Manipulator.toggleClass(this._menu, CLASS_NAME_SHOW$1);
-    Manipulator.toggleClass(this._element, CLASS_NAME_SHOW$1);
+    this._menu.classList.toggle(CLASS_NAME_SHOW$1);
+
+    this._element.classList.toggle(CLASS_NAME_SHOW$1);
+
     EventHandler.trigger(parent, EVENT_SHOWN$1, relatedTarget);
   };
 
@@ -2359,8 +2298,10 @@ var Dropdown = /*#__PURE__*/function () {
       this._popper.destroy();
     }
 
-    Manipulator.toggleClass(this._menu, CLASS_NAME_SHOW$1);
-    Manipulator.toggleClass(this._element, CLASS_NAME_SHOW$1);
+    this._menu.classList.toggle(CLASS_NAME_SHOW$1);
+
+    this._element.classList.toggle(CLASS_NAME_SHOW$1);
+
     EventHandler.trigger(parent, EVENT_HIDDEN$1, relatedTarget);
   };
 
@@ -2412,11 +2353,7 @@ var Dropdown = /*#__PURE__*/function () {
     var placement = PLACEMENT_BOTTOM; // Handle dropup
 
     if (parentDropdown.classList.contains(CLASS_NAME_DROPUP)) {
-      placement = PLACEMENT_TOP;
-
-      if (this._menu.classList.contains(CLASS_NAME_MENURIGHT)) {
-        placement = PLACEMENT_TOPEND;
-      }
+      placement = this._menu.classList.contains(CLASS_NAME_MENURIGHT) ? PLACEMENT_TOPEND : PLACEMENT_TOP;
     } else if (parentDropdown.classList.contains(CLASS_NAME_DROPRIGHT)) {
       placement = PLACEMENT_RIGHT;
     } else if (parentDropdown.classList.contains(CLASS_NAME_DROPLEFT)) {
@@ -2660,26 +2597,28 @@ EventHandler.on(document, EVENT_CLICK_DATA_API$4, SELECTOR_DATA_TOGGLE$2, functi
 EventHandler.on(document, EVENT_CLICK_DATA_API$4, SELECTOR_FORM_CHILD, function (e) {
   return e.stopPropagation();
 });
-var $$5 = getjQuery();
 /**
  * ------------------------------------------------------------------------
  * jQuery
  * ------------------------------------------------------------------------
- * add .dropdown to jQuery only if jQuery is present
+ * add .Dropdown to jQuery only if jQuery is present
  */
 
-/* istanbul ignore if */
+onDOMContentLoaded(function () {
+  var $ = getjQuery();
+  /* istanbul ignore if */
 
-if ($$5) {
-  var JQUERY_NO_CONFLICT$4 = $$5.fn[NAME$4];
-  $$5.fn[NAME$4] = Dropdown.jQueryInterface;
-  $$5.fn[NAME$4].Constructor = Dropdown;
+  if ($) {
+    var JQUERY_NO_CONFLICT = $.fn[NAME$4];
+    $.fn[NAME$4] = Dropdown.jQueryInterface;
+    $.fn[NAME$4].Constructor = Dropdown;
 
-  $$5.fn[NAME$4].noConflict = function () {
-    $$5.fn[NAME$4] = JQUERY_NO_CONFLICT$4;
-    return Dropdown.jQueryInterface;
-  };
-}
+    $.fn[NAME$4].noConflict = function () {
+      $.fn[NAME$4] = JQUERY_NO_CONFLICT;
+      return Dropdown.jQueryInterface;
+    };
+  }
+});
 
 /**
  * ------------------------------------------------------------------------
@@ -2688,7 +2627,7 @@ if ($$5) {
  */
 
 var NAME$5 = 'modal';
-var VERSION$5 = '5.0.0-alpha2';
+var VERSION$5 = '5.0.0-alpha3';
 var DATA_KEY$5 = 'bs.modal';
 var EVENT_KEY$5 = "." + DATA_KEY$5;
 var DATA_API_KEY$5 = '.data-api';
@@ -3289,30 +3228,32 @@ EventHandler.on(document, EVENT_CLICK_DATA_API$5, SELECTOR_DATA_TOGGLE$3, functi
 
   data.show(this);
 });
-var $$6 = getjQuery();
 /**
  * ------------------------------------------------------------------------
  * jQuery
  * ------------------------------------------------------------------------
- * add .modal to jQuery only if jQuery is present
+ * add .Modal to jQuery only if jQuery is present
  */
 
-/* istanbul ignore if */
+onDOMContentLoaded(function () {
+  var $ = getjQuery();
+  /* istanbul ignore if */
 
-if ($$6) {
-  var JQUERY_NO_CONFLICT$5 = $$6.fn[NAME$5];
-  $$6.fn[NAME$5] = Modal.jQueryInterface;
-  $$6.fn[NAME$5].Constructor = Modal;
+  if ($) {
+    var JQUERY_NO_CONFLICT = $.fn[NAME$5];
+    $.fn[NAME$5] = Modal.jQueryInterface;
+    $.fn[NAME$5].Constructor = Modal;
 
-  $$6.fn[NAME$5].noConflict = function () {
-    $$6.fn[NAME$5] = JQUERY_NO_CONFLICT$5;
-    return Modal.jQueryInterface;
-  };
-}
+    $.fn[NAME$5].noConflict = function () {
+      $.fn[NAME$5] = JQUERY_NO_CONFLICT;
+      return Modal.jQueryInterface;
+    };
+  }
+});
 
 /**
  * --------------------------------------------------------------------------
- * Bootstrap (v5.0.0-alpha2): util/sanitizer.js
+ * Bootstrap (v5.0.0-alpha3): util/sanitizer.js
  * Licensed under MIT (https://github.com/twbs/bootstrap/blob/main/LICENSE)
  * --------------------------------------------------------------------------
  */
@@ -3444,7 +3385,7 @@ function sanitizeHtml(unsafeHtml, allowList, sanitizeFn) {
  */
 
 var NAME$6 = 'tooltip';
-var VERSION$6 = '5.0.0-alpha2';
+var VERSION$6 = '5.0.0-alpha3';
 var DATA_KEY$6 = 'bs.tooltip';
 var EVENT_KEY$6 = "." + DATA_KEY$6;
 var CLASS_PREFIX = 'bs-tooltip';
@@ -4168,27 +4109,29 @@ var Tooltip = /*#__PURE__*/function () {
 
   return Tooltip;
 }();
-
-var $$7 = getjQuery();
 /**
  * ------------------------------------------------------------------------
  * jQuery
  * ------------------------------------------------------------------------
- * add .tooltip to jQuery only if jQuery is present
+ * add .Tooltip to jQuery only if jQuery is present
  */
 
-/* istanbul ignore if */
 
-if ($$7) {
-  var JQUERY_NO_CONFLICT$6 = $$7.fn[NAME$6];
-  $$7.fn[NAME$6] = Tooltip.jQueryInterface;
-  $$7.fn[NAME$6].Constructor = Tooltip;
+onDOMContentLoaded(function () {
+  var $ = getjQuery();
+  /* istanbul ignore if */
 
-  $$7.fn[NAME$6].noConflict = function () {
-    $$7.fn[NAME$6] = JQUERY_NO_CONFLICT$6;
-    return Tooltip.jQueryInterface;
-  };
-}
+  if ($) {
+    var JQUERY_NO_CONFLICT = $.fn[NAME$6];
+    $.fn[NAME$6] = Tooltip.jQueryInterface;
+    $.fn[NAME$6].Constructor = Tooltip;
+
+    $.fn[NAME$6].noConflict = function () {
+      $.fn[NAME$6] = JQUERY_NO_CONFLICT;
+      return Tooltip.jQueryInterface;
+    };
+  }
+});
 
 /**
  * ------------------------------------------------------------------------
@@ -4197,7 +4140,7 @@ if ($$7) {
  */
 
 var NAME$7 = 'popover';
-var VERSION$7 = '5.0.0-alpha2';
+var VERSION$7 = '5.0.0-alpha3';
 var DATA_KEY$7 = 'bs.popover';
 var EVENT_KEY$7 = "." + DATA_KEY$7;
 var CLASS_PREFIX$1 = 'bs-popover';
@@ -4357,26 +4300,29 @@ var Popover = /*#__PURE__*/function (_Tooltip) {
 
   return Popover;
 }(Tooltip);
-
-var $$8 = getjQuery();
 /**
  * ------------------------------------------------------------------------
  * jQuery
  * ------------------------------------------------------------------------
+ * add .Popover to jQuery only if jQuery is present
  */
 
-/* istanbul ignore if */
 
-if ($$8) {
-  var JQUERY_NO_CONFLICT$7 = $$8.fn[NAME$7];
-  $$8.fn[NAME$7] = Popover.jQueryInterface;
-  $$8.fn[NAME$7].Constructor = Popover;
+onDOMContentLoaded(function () {
+  var $ = getjQuery();
+  /* istanbul ignore if */
 
-  $$8.fn[NAME$7].noConflict = function () {
-    $$8.fn[NAME$7] = JQUERY_NO_CONFLICT$7;
-    return Popover.jQueryInterface;
-  };
-}
+  if ($) {
+    var JQUERY_NO_CONFLICT = $.fn[NAME$7];
+    $.fn[NAME$7] = Popover.jQueryInterface;
+    $.fn[NAME$7].Constructor = Popover;
+
+    $.fn[NAME$7].noConflict = function () {
+      $.fn[NAME$7] = JQUERY_NO_CONFLICT;
+      return Popover.jQueryInterface;
+    };
+  }
+});
 
 /**
  * ------------------------------------------------------------------------
@@ -4385,7 +4331,7 @@ if ($$8) {
  */
 
 var NAME$8 = 'scrollspy';
-var VERSION$8 = '5.0.0-alpha2';
+var VERSION$8 = '5.0.0-alpha3';
 var DATA_KEY$8 = 'bs.scrollspy';
 var EVENT_KEY$8 = "." + DATA_KEY$8;
 var DATA_API_KEY$6 = '.data-api';
@@ -4657,25 +4603,28 @@ EventHandler.on(window, EVENT_LOAD_DATA_API$1, function () {
     return new ScrollSpy(spy, Manipulator.getDataAttributes(spy));
   });
 });
-var $$9 = getjQuery();
 /**
  * ------------------------------------------------------------------------
  * jQuery
  * ------------------------------------------------------------------------
+ * add .ScrollSpy to jQuery only if jQuery is present
  */
 
-/* istanbul ignore if */
+onDOMContentLoaded(function () {
+  var $ = getjQuery();
+  /* istanbul ignore if */
 
-if ($$9) {
-  var JQUERY_NO_CONFLICT$8 = $$9.fn[NAME$8];
-  $$9.fn[NAME$8] = ScrollSpy.jQueryInterface;
-  $$9.fn[NAME$8].Constructor = ScrollSpy;
+  if ($) {
+    var JQUERY_NO_CONFLICT = $.fn[NAME$8];
+    $.fn[NAME$8] = ScrollSpy.jQueryInterface;
+    $.fn[NAME$8].Constructor = ScrollSpy;
 
-  $$9.fn[NAME$8].noConflict = function () {
-    $$9.fn[NAME$8] = JQUERY_NO_CONFLICT$8;
-    return ScrollSpy.jQueryInterface;
-  };
-}
+    $.fn[NAME$8].noConflict = function () {
+      $.fn[NAME$8] = JQUERY_NO_CONFLICT;
+      return ScrollSpy.jQueryInterface;
+    };
+  }
+});
 
 /**
  * ------------------------------------------------------------------------
@@ -4684,7 +4633,7 @@ if ($$9) {
  */
 
 var NAME$9 = 'tab';
-var VERSION$9 = '5.0.0-alpha2';
+var VERSION$9 = '5.0.0-alpha3';
 var DATA_KEY$9 = 'bs.tab';
 var EVENT_KEY$9 = "." + DATA_KEY$9;
 var DATA_API_KEY$7 = '.data-api';
@@ -4883,26 +4832,28 @@ EventHandler.on(document, EVENT_CLICK_DATA_API$6, SELECTOR_DATA_TOGGLE$4, functi
   var data = Data.getData(this, DATA_KEY$9) || new Tab(this);
   data.show();
 });
-var $$a = getjQuery();
 /**
  * ------------------------------------------------------------------------
  * jQuery
  * ------------------------------------------------------------------------
- * add .tab to jQuery only if jQuery is present
+ * add .Tab to jQuery only if jQuery is present
  */
 
-/* istanbul ignore if */
+onDOMContentLoaded(function () {
+  var $ = getjQuery();
+  /* istanbul ignore if */
 
-if ($$a) {
-  var JQUERY_NO_CONFLICT$9 = $$a.fn[NAME$9];
-  $$a.fn[NAME$9] = Tab.jQueryInterface;
-  $$a.fn[NAME$9].Constructor = Tab;
+  if ($) {
+    var JQUERY_NO_CONFLICT = $.fn[NAME$9];
+    $.fn[NAME$9] = Tab.jQueryInterface;
+    $.fn[NAME$9].Constructor = Tab;
 
-  $$a.fn[NAME$9].noConflict = function () {
-    $$a.fn[NAME$9] = JQUERY_NO_CONFLICT$9;
-    return Tab.jQueryInterface;
-  };
-}
+    $.fn[NAME$9].noConflict = function () {
+      $.fn[NAME$9] = JQUERY_NO_CONFLICT;
+      return Tab.jQueryInterface;
+    };
+  }
+});
 
 /**
  * ------------------------------------------------------------------------
@@ -4911,7 +4862,7 @@ if ($$a) {
  */
 
 var NAME$a = 'toast';
-var VERSION$a = '5.0.0-alpha2';
+var VERSION$a = '5.0.0-alpha3';
 var DATA_KEY$a = 'bs.toast';
 var EVENT_KEY$a = "." + DATA_KEY$a;
 var EVENT_CLICK_DISMISS$1 = "click.dismiss" + EVENT_KEY$a;
@@ -5106,27 +5057,29 @@ var Toast = /*#__PURE__*/function () {
 
   return Toast;
 }();
-
-var $$b = getjQuery();
 /**
  * ------------------------------------------------------------------------
  * jQuery
  * ------------------------------------------------------------------------
- *  add .toast to jQuery only if jQuery is present
+ * add .Toast to jQuery only if jQuery is present
  */
 
-/* istanbul ignore if */
 
-if ($$b) {
-  var JQUERY_NO_CONFLICT$a = $$b.fn[NAME$a];
-  $$b.fn[NAME$a] = Toast.jQueryInterface;
-  $$b.fn[NAME$a].Constructor = Toast;
+onDOMContentLoaded(function () {
+  var $ = getjQuery();
+  /* istanbul ignore if */
 
-  $$b.fn[NAME$a].noConflict = function () {
-    $$b.fn[NAME$a] = JQUERY_NO_CONFLICT$a;
-    return Toast.jQueryInterface;
-  };
-}
+  if ($) {
+    var JQUERY_NO_CONFLICT = $.fn[NAME$a];
+    $.fn[NAME$a] = Toast.jQueryInterface;
+    $.fn[NAME$a].Constructor = Toast;
+
+    $.fn[NAME$a].noConflict = function () {
+      $.fn[NAME$a] = JQUERY_NO_CONFLICT;
+      return Toast.jQueryInterface;
+    };
+  }
+});
 
 
 //# sourceMappingURL=bootstrap.esm.js.map
@@ -7804,22 +7757,21 @@ module.exports = g;
 
 try {
   window.Popper = __webpack_require__(/*! popper.js */ "./node_modules/popper.js/dist/esm/popper.js")["default"];
+  window.bootstrap = __webpack_require__(/*! bootstrap */ "./node_modules/bootstrap/dist/js/bootstrap.esm.js"); // custom scripts
 
-  __webpack_require__(/*! bootstrap */ "./node_modules/bootstrap/dist/js/bootstrap.esm.js");
-
-  __webpack_require__(/*! ../navbarScripts */ "./resources/js/navbarScripts.js");
+  __webpack_require__(/*! ../navbar */ "./resources/js/navbar.js");
 } catch (e) {}
 
 /***/ }),
 
-/***/ "./resources/js/navbarScripts.js":
-/*!***************************************!*\
-  !*** ./resources/js/navbarScripts.js ***!
-  \***************************************/
+/***/ "./resources/js/navbar.js":
+/*!********************************!*\
+  !*** ./resources/js/navbar.js ***!
+  \********************************/
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-document.addEventListener("DOMContentLoaded", function () {
+window.addEventListener("DOMContentLoaded", function () {
   var navbarCollapse = function navbarCollapse() {
     var nav = document.getElementById("mainNav");
 

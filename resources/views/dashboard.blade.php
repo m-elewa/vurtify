@@ -2,9 +2,9 @@
         <section class="masthead bg-primary text-white text-center">
             <div class="container d-flex align-items-center flex-column pt-5">
                 <!-- Masthead Avatar Image-->
-                <img class="masthead-avatar my-5" src="{{ asset('images/avatar.svg') }}" alt="" />
+                <img class="masthead-avatar my-3" src="{{ asset('images/market-launch-pana.svg') }}" alt="" />
                 <!-- Masthead Heading-->
-                <h1 class="masthead-heading text-uppercase mb-0">Start Bootstrap</h1>
+                <h1 class="masthead-heading text-uppercase mb-0">Start Developing</h1>
                 <!-- Icon Divider-->
                 <div class="divider-custom divider-light">
                     <div class="divider-custom-line"></div>
@@ -12,7 +12,7 @@
                     <div class="divider-custom-line"></div>
                 </div>
                 <!-- Masthead Subheading-->
-                <p class="masthead-subheading font-weight-light mb-0">Graphic Artist - Web Designer - Illustrator</p>
+                <p class="masthead-subheading font-weight-light mb-0">Laravel - Fortify - Bootstrap - Vue</p>
             </div>
         </section>
 
@@ -29,12 +29,12 @@
                 </div>
                 <!-- About Section Content-->
                 <div class="row">
-                    <div class="col-lg-4 ml-auto"><p class="lead">Freelancer is a free bootstrap theme created by Start Bootstrap. The download includes the complete source files including HTML, CSS, and JavaScript as well as optional SASS stylesheets for easy customization.</p></div>
-                    <div class="col-lg-4 mr-auto"><p class="lead">You can create your own custom avatar for the masthead, change the icon in the dividers, and add your email address to the contact form to make it fully functional!</p></div>
+                    <div class="col-lg-4 ml-auto"><p class="lead">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Verum tamen cum de rebus grandioribus dicas, ipsae res verba rapiunt; Ex rebus enim timiditas, non ex vocabulis nascitur. Sed tempus est, si videtur.</p></div>
+                    <div class="col-lg-4 mr-auto"><p class="lead">Hebes acies est cuipiam oculorum, corpore alius senescit; Intrandum est igitur in rerum naturam et penitus quid ea postulet pervidendum; Duo Reges: constructio interrete!</p></div>
                 </div>
                 <!-- About Section Button-->
                 <div class="text-center mt-4">
-                    <a class="btn btn-xl btn-outline-secondary" href="https://startbootstrap.com/theme/freelancer/">
+                    <a class="btn btn-xl btn-outline-secondary" href="https://github.com/m-elewa/vurtify">
                         <i class="fas fa-download mr-2"></i>
                         Free Download!
                     </a>
@@ -50,25 +50,25 @@
                 <div class="col-lg-4 mb-5 mb-lg-0">
                     <h4 class="text-uppercase mb-4">Location</h4>
                     <p class="lead mb-0">
-                        2215 John Daniel Drive
+                        12 Howard Lane
                         <br />
-                        Clark, MO 65243
+                        Starkville, MS 39759
                     </p>
                 </div>
                 <!-- Footer Social Icons-->
                 <div class="col-lg-4 mb-5 mb-lg-0">
                     <h4 class="text-uppercase mb-4">Around the Web</h4>
                     <a class="btn btn-outline-light btn-social mx-1" href="#!"><i class="fab fa-fw fa-facebook-f"></i></a>
-                    <a class="btn btn-outline-light btn-social mx-1" href="#!"><i class="fab fa-fw fa-twitter"></i></a>
+                    <a class="btn btn-outline-light btn-social mx-1" href="https://twitter.com/_mahmoud_elewa_"><i class="fab fa-fw fa-twitter"></i></a>
                     <a class="btn btn-outline-light btn-social mx-1" href="#!"><i class="fab fa-fw fa-linkedin-in"></i></a>
                     <a class="btn btn-outline-light btn-social mx-1" href="#!"><i class="fab fa-fw fa-dribbble"></i></a>
                 </div>
                 <!-- Footer About Text-->
                 <div class="col-lg-4">
-                    <h4 class="text-uppercase mb-4">About Freelancer</h4>
+                    <h4 class="text-uppercase mb-4">About</h4>
                     <p class="lead mb-0">
-                        Freelance is a free to use, MIT licensed Bootstrap theme created by
-                        <a href="http://startbootstrap.com">Start Bootstrap</a>
+                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Haec quo modo
+                        <a href="https://github.com/m-elewa/vurtify">Start Now</a>
                         .
                     </p>
                 </div>

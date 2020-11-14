@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserProfileController;
+use App\Http\Controllers\Fortify\ProfileInformationController;
 
 /*
 |--------------------------------------------------------------------------
@@ -36,4 +37,11 @@ Route::group(['middleware' => 'auth:sanctum'], function () {
 
     Route::delete('/user/profile/logout-other-browser-sessions', [UserProfileController::class, 'logoutOtherBrowserSessions'])
                 ->name('profile.logout-other-browser-sessions');
+});
+
+Route::group(['middleware' => config('fortify.middleware', ['web'])], function () {
+    // Profile Information...
+    Route::put('/user/profile-information', [ProfileInformationController::class, 'update'])
+        ->middleware(['auth'])
+        ->name('user-profile-information.update');
 });

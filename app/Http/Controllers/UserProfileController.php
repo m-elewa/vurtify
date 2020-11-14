@@ -38,7 +38,7 @@ class UserProfileController extends Controller
     {
         Auth::user()->deleteProfilePhoto();
 
-        return back()->with('status-success', 'Profile Photo Deleted!');
+        return back()->with('status-success-toast', 'Profile Photo Deleted!');
     }
 
     /**
@@ -66,7 +66,7 @@ class UserProfileController extends Controller
     public function logoutOtherBrowserSessions(Request $request, StatefulGuard $guard)
     {
         if (! Hash::check($request->password, Auth::user()->password)) {
-            return back()->with('status-fail', 'This password does not match our records.');
+            return back()->with('status-fail-toast', 'This password does not match our records.');
         }
 
         if (config('session.driver') !== 'database') {
@@ -78,7 +78,7 @@ class UserProfileController extends Controller
             ->where('id', '!=', request()->session()->getId())
             ->delete();
 
-        return back()->with('status-success', 'Logged out from other browser sessions!');
+        return back()->with('status-success-toast', 'Logged out from other browser sessions!');
     }
 
     /**
@@ -86,7 +86,7 @@ class UserProfileController extends Controller
      *
      * @return \Illuminate\Support\Collection
      */
-    public function getSessionsProperty()
+    protected function getSessionsProperty()
     {
         if (config('session.driver') !== 'database') {
             return collect();
@@ -94,9 +94,9 @@ class UserProfileController extends Controller
 
         return collect(
             DB::table(config('session.table', 'sessions'))
-                    ->where('user_id', Auth::user()->getAuthIdentifier())
-                    ->orderBy('last_activity', 'desc')
-                    ->get()
+                ->where('user_id', Auth::user()->getAuthIdentifier())
+                ->orderBy('last_activity', 'desc')
+                ->get()
         )->map(function ($session) {
             return (object) [
                 'agent' => $this->createAgent($session),

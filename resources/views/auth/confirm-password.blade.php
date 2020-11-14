@@ -1,7 +1,7 @@
 <x-guest-layout>
     <div class="container my-auto pb-5">
         <div class="row justify-content-center">
-            <div class="col-md-4">
+            <div class="col-lg-5">
                 <div class="card pb-3">
                     <div class="card-body">
                         <h2 class="card-title text-center py-4">{{ __('Confirm Password') }}</h2>
@@ -11,7 +11,7 @@
                         <form method="POST" action="{{ route('password.confirm') }}">
                             @csrf
 
-                            <div class="form-label-group">
+                            <div class="custom-form-floating">
                                 <input id="password" type="password"
                                     class="form-control @error('password') is-invalid @enderror" name="password"
                                     required autocomplete="current-password" placeholder="{{ __('Password') }}">

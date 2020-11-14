@@ -6,7 +6,7 @@
 // Import custom variables and override default Bootstrap variables
 @import "variables";
 
-// Import Bootstrap v5.0.0-alpha2
+// Import Bootstrap v5.0.0-alpha3
 @import "~bootstrap/scss/bootstrap";
 
 // Import custom styles
@@ -16,3 +16,7 @@
 @import "divider.scss";
 @import "footer.scss";
 @import "buttons.scss";
+@import "modal.scss";
+@import "toast.scss";
+@import "profile-photo.scss";
+@import "../floating-label.scss";

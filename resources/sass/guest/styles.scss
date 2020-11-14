@@ -6,10 +6,11 @@
 // Import custom variables and override default Bootstrap variables
 @import "variables";
 
-// Import Bootstrap v5.0.0-alpha2
+// Import Bootstrap v5.0.0-alpha3
 @import "~bootstrap/scss/bootstrap";
 
 // Import custom styles
 @import "global.scss";
 @import "navbar.scss";
 @import "masthead.scss";
+@import "../floating-label.scss";

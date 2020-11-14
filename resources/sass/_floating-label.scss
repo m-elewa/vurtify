@@ -1,0 +1,56 @@
+// Floating label
+.custom-form-floating {
+    // display: flex;
+    // flex-direction: column;
+    position: relative;
+    margin-bottom: 1rem;
+
+    >.form-control,
+    >label {
+        // height: 3.125rem;
+        padding: .75rem;
+    }
+
+    >label {
+        position: absolute;
+        top: 0;
+        left: 0;
+        display: block;
+        width: 100%;
+        // height: auto;
+        // color: #495057;
+        color: $input-placeholder-color;
+        pointer-events: none;
+        cursor: text;
+        /* Match the input under the label */
+        border: 1px solid transparent;
+        border-radius: .25rem;
+        transition: all .1s ease-in-out;
+    }
+
+    >.form-control {
+        &::placeholder {
+            color: transparent;
+        }
+
+        &:focus,
+        &:not(:placeholder-shown) {
+            padding-top: 1.25rem;
+            padding-bottom: .25rem;
+            border-bottom: 4px solid $primary;
+            box-shadow: none;
+
+            &.is-invalid {
+                border-bottom: 4px solid $danger !important;
+            }
+        }
+
+        &:focus~label,
+        &:not(:placeholder-shown)~label {
+            padding-top: .25rem;
+            padding-bottom: .25rem;
+            font-size: 12px;
+            // color: #777;
+        }
+    }
+}
