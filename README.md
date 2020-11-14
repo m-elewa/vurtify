@@ -77,7 +77,7 @@ If usinf Docker run `make up` to run all Docker containers
 
 ## Built With
 * [Laravel](https://github.com/laravel/laravel)
-* [Fortify](https://github.com/laravel/horizon)
+* [Fortify](https://github.com/laravel/fortify)
 * [Bootstrap](https://github.com/twbs/bootstrap)
 * [NGINX](https://www.nginx.com/)
 * [MySQL](https://www.mysql.com/)
