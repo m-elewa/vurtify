@@ -1,61 +1,103 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400"></a></p>
+# Vurtify
+
+Vurtify is a Laravel 8 boilerplate project that gives you the features that Jetstream and Fortify came with, without dealing with the complexity of Jetstream and Tailwind. Instead, we are using Bootstrap 5 and Vue.
+
+## Basic Features
+
+- built on top of Fortify
+- register system
+- reset forgotten password
+- update password
+- update user info
+- profile photo
+- logout other browser sessions
+- delete account
+- email verification
+- nice bootstrap 5 design
+- configurable sass design
+- separate design for the guest section and app section
+- ready to work with Vue
+- Jetstream, tailwind, and livewire got removed completely from the project
+- Clean and easy to understand code
+- Optional ready to use Docker environment to help with the development
+- helpful Makefile commands
+- And more...
+
+## Preview
 
 <p align="center">
-<a href="https://travis-ci.org/laravel/framework"><img src="https://travis-ci.org/laravel/framework.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
+    <img src="https://raw.githubusercontent.com/m-elewa/images/main/Laravel%20-%20welcome.png" width="80%" height="auto">
+    <img src="https://raw.githubusercontent.com/m-elewa/images/main/Laravel%20-%20login.png" width="80%" height="auto">
+    <img src="https://raw.githubusercontent.com/m-elewa/images/main/Laravel%20-%20register.png" width="80%" height="auto">
+    <img src="https://raw.githubusercontent.com/m-elewa/images/main/Laravel%20-%20dashboard.png" width="80%" height="auto">
+    <img src="https://raw.githubusercontent.com/m-elewa/images/main/Laravel%20-%20profile.png" width="80%" height="auto">
+    <img src="https://raw.githubusercontent.com/m-elewa/images/main/Laravel%20-%20modal.png" width="80%" height="auto">
+    <img src="https://raw.githubusercontent.com/m-elewa/images/main/Laravel%20-%20toast-2.png" width="80%" height="auto">
 </p>
 
-## About Laravel
+## Installation
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+Clone this repository
+```bash
+$ git clone https://github.com/m-elewa/vurtify.git
+```
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+Then install the required dependency.
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+```bash
+# copy the .env.example file to .env
+$ cp .env.example .env
 
-## Learning Laravel
+# Generate the application key
+$ php artisan key:generate
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+# Install the PHP dependencies
+$ composer install
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains over 1500 video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+# Install node modules
+$ npm install
 
-## Laravel Sponsors
+# Compile the js and sass code
+$ npm run dev
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the Laravel [Patreon page](https://patreon.com/taylorotwell).
+# Migrate the application
+$ php artisan migrate
 
-### Premium Partners
+# Create the symbolic link
+$ php artisan storage:link
+```
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Cubet Techno Labs](https://cubettech.com)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[Many](https://www.many.co.uk)**
-- **[Webdock, Fast VPS Hosting](https://www.webdock.io/en)**
-- **[DevSquad](https://devsquad.com)**
-- **[OP.GG](https://op.gg)**
+Once everything is done, start a development server
+
+```bash
+php artisan serve
+```
+
+If usinf Docker run `make up` to run all Docker containers
+
+## Built With
+* [Laravel](https://github.com/laravel/laravel)
+* [Fortify](https://github.com/laravel/horizon)
+* [Bootstrap](https://github.com/twbs/bootstrap)
+* [NGINX](https://www.nginx.com/)
+* [MySQL](https://www.mysql.com/)
+* [PhpMyAdmin](https://www.phpmyadmin.net/)
+* [mailhog](https://github.com/mailhog/MailHog)
+* [Portainer](https://www.portainer.io/)
+
+## To Do
+- Add Two Factor Authentication
+- Add API support
+- Add Teams system
+
+## Issues
+If you come across any issues please [report them here](https://github.com/m-elewa/vurtify/issues).
 
 ## Contributing
-
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
-
-## Code of Conduct
-
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+Contributing to the Vurtify project are welcome, please feel free to make any pull requests, or email me a feature request you would like to see in the future at [mahmoud.elewa.999@gmail.com](mailto:mahmoud.elewa.999@gmail.com).
 
 ## Security Vulnerabilities
-
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+If you discover a security vulnerability within Vurtify, please send an email to [mahmoud.elewa.999@gmail.com](mailto:mahmoud.elewa.999@gmail.com), or create a pull request if possible.
 
 ## License
-
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+Vurtify is open-sourced software licensed under the [MIT license](https://github.com/m-elewa/vurtify/blob/master/LICENSE).
