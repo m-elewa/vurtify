@@ -94,21 +94,13 @@
                                 @foreach($sessions as $session)
                                     <div class="d-flex py-2 align-content-center">
                                         @if($session->agent->isDesktop())
-                                            <svg fill="none" stroke-linecap="round" stroke-linejoin="round"
-                                                stroke-width="2" viewBox="0 0 24 24" stroke="currentColor"
-                                                class="text-black-50" style="width: 40px;height:40px">
-                                                <path
-                                                    d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z">
-                                                </path>
-                                            </svg>
+                                            <span class="d-flex justify-content-center align-items-center" style="width: 50px">
+                                                <i class="fas fa-desktop text-black-50 fs-2"></i>
+                                            </span>
                                         @else
-                                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" stroke-width="2"
-                                                stroke="currentColor" fill="none" stroke-linecap="round"
-                                                stroke-linejoin="round" class="text-black-50">
-                                                <path d="M0 0h24v24H0z" stroke="none"></path>
-                                                <rect x="7" y="4" width="10" height="16" rx="1"></rect>
-                                                <path d="M11 5h2M12 17v.01"></path>
-                                            </svg>
+                                            <span class="d-flex justify-content-center align-items-center" style="width: 50px">
+                                                <i class="fas fa-mobile-alt text-black-50 fs-2"></i>
+                                            </span>
                                         @endif
 
                                         <div class="ml-3">

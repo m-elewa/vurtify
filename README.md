@@ -30,7 +30,7 @@ Vurtify is a Laravel 8 boilerplate project that gives you the features that Jets
     <img src="https://raw.githubusercontent.com/m-elewa/images/main/Laravel%20-%20login.png" width="80%" height="auto">
     <img src="https://raw.githubusercontent.com/m-elewa/images/main/Laravel%20-%20register.png" width="80%" height="auto">
     <img src="https://raw.githubusercontent.com/m-elewa/images/main/Laravel%20-%20dashboard.png" width="80%" height="auto">
-    <img src="https://raw.githubusercontent.com/m-elewa/images/main/Laravel%20-%20profile.png" width="80%" height="auto">
+    <img src="https://raw.githubusercontent.com/m-elewa/images/main/Laravel%20-%20profile-2.png" width="80%" height="auto">
     <img src="https://raw.githubusercontent.com/m-elewa/images/main/Laravel%20-%20modal.png" width="80%" height="auto">
     <img src="https://raw.githubusercontent.com/m-elewa/images/main/Laravel%20-%20toast-2.png" width="80%" height="auto">
 </p>
