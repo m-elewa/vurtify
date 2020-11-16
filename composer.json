@@ -1,10 +1,12 @@
 {
-    "name": "laravel/laravel",
+    "name": "m-elewa/vurtify",
     "type": "project",
-    "description": "The Laravel Framework.",
+    "description": "Laravel 8 boilerplate project with Fortify + Bootstrap 5 + Vue.",
     "keywords": [
         "framework",
-        "laravel"
+        "laravel",
+        "fortify",
+        "bootstrap"
     ],
     "license": "MIT",
     "require": {

@@ -30,14 +30,19 @@ Vurtify is a Laravel 8 boilerplate project that gives you the features that Jets
     <img src="https://raw.githubusercontent.com/m-elewa/images/main/Laravel%20-%20login.png" width="80%" height="auto">
     <img src="https://raw.githubusercontent.com/m-elewa/images/main/Laravel%20-%20register.png" width="80%" height="auto">
     <img src="https://raw.githubusercontent.com/m-elewa/images/main/Laravel%20-%20dashboard.png" width="80%" height="auto">
-    <img src="https://raw.githubusercontent.com/m-elewa/images/main/Laravel%20-%20profile-2.png" width="80%" height="auto">
+    <img src="https://raw.githubusercontent.com/m-elewa/images/main/Laravel%20-%20profile-3.png" width="80%" height="auto">
     <img src="https://raw.githubusercontent.com/m-elewa/images/main/Laravel%20-%20modal.png" width="80%" height="auto">
     <img src="https://raw.githubusercontent.com/m-elewa/images/main/Laravel%20-%20toast-2.png" width="80%" height="auto">
 </p>
 
 ## Installation
 
-Clone this repository
+Via Composer Create-Project
+```
+composer create-project --prefer-dist m-elewa/vurtify:dev-master blog
+```
+
+Or clone this repository
 ```bash
 $ git clone https://github.com/m-elewa/vurtify.git
 ```
@@ -73,19 +78,21 @@ Once everything is done, start a development server
 php artisan serve
 ```
 
-If usinf Docker run `make up` to run all Docker containers
+If using Docker run `make up` to run all Docker containers
 
-## Built With
+## Great open-source projects used to help build Vurtify
 * [Laravel](https://github.com/laravel/laravel)
 * [Fortify](https://github.com/laravel/fortify)
 * [Bootstrap](https://github.com/twbs/bootstrap)
 * [NGINX](https://www.nginx.com/)
 * [MySQL](https://www.mysql.com/)
 * [PhpMyAdmin](https://www.phpmyadmin.net/)
-* [mailhog](https://github.com/mailhog/MailHog)
+* [Mailhog](https://github.com/mailhog/MailHog)
 * [Portainer](https://www.portainer.io/)
 
 ## To Do
+- update to Vue 3 and use Typescript
+- add more Vue components
 - Add Two Factor Authentication
 - Add API support
 - Add Teams system
