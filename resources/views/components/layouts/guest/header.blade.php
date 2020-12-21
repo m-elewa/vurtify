@@ -3,7 +3,7 @@
         <a class="navbar-brand" href="{{ url('/') }}">
             {{ config('app.name', 'Laravel') }}
         </a>
-        <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse"
+        <button class="navbar-toggler navbar-toggler-right" type="button" data-bs-toggle="collapse"
             data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false"
             aria-label="{{ __('Toggle navigation') }}">
             <span class="navbar-toggler-icon"></span>
@@ -11,11 +11,11 @@
 
         <div class="collapse navbar-collapse" id="navbarResponsive">
             <!-- Left Side Of Navbar -->
-            <ul class="navbar-nav mr-auto">
+            <ul class="navbar-nav me-auto">
             </ul>
 
             <!-- Right Side Of Navbar -->
-            <ul class="navbar-nav ml-auto my-2 my-lg-0">
+            <ul class="navbar-nav ms-auto my-2 my-lg-0">
                 <x-layouts.nav-links />
             </ul>
         </div>

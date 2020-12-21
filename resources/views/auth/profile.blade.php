@@ -6,7 +6,7 @@
             <div class="text-center mb-5 col-md-12">
 
                 <div class="d-flex align-items-center justify-content-center ">
-                    <div class="profile-photo" style="width: 200px;height:200px" data-toggle="modal"
+                    <div class="profile-photo" style="width: 200px;height:200px" data-bs-toggle="modal"
                         data-target="#upload-profile-photo">
                         <div
                             class="rounded-circle img-thumbnail profile-photo-caption d-flex align-items-center justify-content-center h-100 w-100">
@@ -103,7 +103,7 @@
                                             </span>
                                         @endif
 
-                                        <div class="ml-3">
+                                        <div class="ms-3">
                                             <div class="text-small muted">
                                                 {{ $session->agent->platform() }} -
                                                 {{ $session->agent->browser() }}
@@ -128,7 +128,7 @@
                         @endif
 
                         <div class="form-group mb-0 mt-2">
-                            <button class="btn btn-secondary text-white px-4" data-toggle="modal"
+                            <button class="btn btn-secondary text-white px-4" data-bs-toggle="modal"
                                 data-target="#logout-other-browser-sessions">
                                 {{ __('Logout Other Browser Sessions') }}
                             </button>
@@ -203,7 +203,7 @@
                         <p>
                             {{ __('Once you delete a repository, there is no going back. Please be certain.') }}
                         </p>
-                        <button class="btn btn-danger text-white px-4" data-toggle="modal"
+                        <button class="btn btn-danger text-white px-4" data-bs-toggle="modal"
                             data-target="#delete-account">
                             {{ __('Delete Account') }}
                         </button>

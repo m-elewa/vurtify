@@ -10,9 +10,6 @@
 
     <!-- Styles -->
     <link rel="stylesheet" href="{{ mix('guest/styles.css') }}">
-
-    <!-- Scripts -->
-    <script src="{{ mix('guest/scripts.js') }}"></script>
 </head>
 
 <body>
@@ -29,4 +26,7 @@
         <!-- Footer -->
         <x-layouts.guest.footer />
     </div>
+
+    <!-- Scripts -->
+    <script src="{{ mix('guest/scripts.js') }}"></script>
 </html>

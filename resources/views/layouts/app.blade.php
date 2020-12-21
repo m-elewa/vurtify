@@ -8,14 +8,8 @@
 
     <title>{{ config('app.name', 'Laravel') }}</title>
 
-    <!-- Font Awesome icons (free version)-->
-    <script src="https://use.fontawesome.com/releases/v5.15.1/js/all.js" crossorigin="anonymous"></script>
-
     <!-- Styles -->
     <link rel="stylesheet" href="{{ mix('app/styles.css') }}">
-
-    <!-- Scripts -->
-    <script src="{{ mix('app/scripts.js') }}"></script>
 </head>
 
 <body class="position-relative">
@@ -25,7 +19,6 @@
     <div class="h-100 d-flex flex-column" id="app">
         <!-- Navbar -->
         <x-layouts.app.header />
-
         <main>
             <x-layouts.session-alerts />
             {{ $slot }}
@@ -34,4 +27,9 @@
         <!-- Footer -->
         <x-layouts.app.footer />
     </div>
+
+    <!-- Scripts -->
+    <script src="{{ mix('app/scripts.js') }}"></script>
+    <!-- Font Awesome icons (free version)-->
+    <script src="https://use.fontawesome.com/releases/v5.15.1/js/all.js" crossorigin="anonymous"></script>
 </html>

@@ -1,6 +1,9 @@
 {
-    "/app/scripts.js": "/app/scripts.js?id=1be37a282014740545e7",
-    "/app/styles.css": "/app/styles.css?id=7f5c5d28f36dda533df8",
-    "/guest/styles.css": "/guest/styles.css?id=e43b24793cd8322c711d",
-    "/guest/scripts.js": "/guest/scripts.js?id=18126817b692022703c6"
+    "/app/scripts.js": "/app/scripts.js?id=567b401d7899c0217c76",
+    "/guest/scripts.js": "/guest/scripts.js?id=9d90a0281a58b7439960",
+    "/guest/styles.css": "/guest/styles.css?id=1e4feb60ee0e27ab951d",
+    "/app/styles.css": "/app/styles.css?id=a0eb47438bb076b93a20",
+    "/images/avatar.svg": "/images/avatar.svg?id=81899e18586b10083308",
+    "/images/bg-masthead.jpg": "/images/bg-masthead.jpg?id=11c7f6fa35b3345aca8d",
+    "/images/market-launch-pana.svg": "/images/market-launch-pana.svg?id=7eba31d3cff7037083c7"
 }
