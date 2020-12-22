@@ -7,7 +7,7 @@
 
                 <div class="d-flex align-items-center justify-content-center ">
                     <div class="profile-photo" style="width: 200px;height:200px" data-bs-toggle="modal"
-                        data-target="#upload-profile-photo">
+                        data-bs-target="#upload-profile-photo">
                         <div
                             class="rounded-circle img-thumbnail profile-photo-caption d-flex align-items-center justify-content-center h-100 w-100">
                             <div class="profile-photo-caption-content text-center text-white"><i
@@ -29,53 +29,9 @@
             </div> {{-- / Profile Photo --}}
 
             <div class="col-md-6">
-                {{-- Profile Information --}}
-                <div class="card mb-4">
-                    <div class="card-body">
-                        <h6 class="card-title py-1">
-                            {{ __('Profile Information') }}
-                        </h6>
-                        <form method="POST" action="{{ route('user-profile-information.update') }}"
-                            enctype="multipart/form-data">
-                            @csrf
-                            @method('PUT')
-
-                            <div class="custom-form-floating">
-                                <input value="{{ old('name', $user->name) }}"
-                                    placeholder="Name" id="name" type="text"
-                                    class="form-control @error('name', 'profile') is-invalid @enderror" name="name"
-                                    autocomplete="name" required>
-                                <label for="name">{{ __('Name') }}</label>
-
-                                @error('name', 'profile')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
-                            </div>
-
-                            <div class="custom-form-floating">
-                                <input required value="{{ old('email', $user->email) }}"
-                                    placeholder="Email" id="email" type="email"
-                                    class="form-control @error('email', 'profile') is-invalid @enderror" name="email"
-                                    autocomplete="email">
-                                <label for="password-confirm">{{ __('Email') }}</label>
-
-                                @error('email', 'profile')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
-                            </div>
-
-                            <div class="form-group mb-0 mt-2">
-                                <button type="submit" class="btn btn-primary text-white px-4">
-                                    {{ __('Save') }}
-                                </button>
-                            </div>
-                        </form>
-                    </div>
-                </div> {{-- / Profile Information --}}
+                <!-- Profile Information -->
+                <update-profile :init-user='@json($user)' submit-route="{{ route('user-profile-information.update') }}"></update-profile>
+                <!-- / Profile Information -->
 
                 {{-- Browser Sessions --}}
                 <div class="card mb-4">
@@ -129,7 +85,7 @@
 
                         <div class="form-group mb-0 mt-2">
                             <button class="btn btn-secondary text-white px-4" data-bs-toggle="modal"
-                                data-target="#logout-other-browser-sessions">
+                                data-bs-target="#logout-other-browser-sessions">
                                 {{ __('Logout Other Browser Sessions') }}
                             </button>
                         </div>
@@ -204,7 +160,7 @@
                             {{ __('Once you delete a repository, there is no going back. Please be certain.') }}
                         </p>
                         <button class="btn btn-danger text-white px-4" data-bs-toggle="modal"
-                            data-target="#delete-account">
+                            data-bs-target="#delete-account">
                             {{ __('Delete Account') }}
                         </button>
                     </div>

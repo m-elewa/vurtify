@@ -1,11 +1,6 @@
 @auth
     <li class="nav-item dropdown">
-        <a id="navbarDropdown" class="nav-link dropdown-toggle text-capitalize" href="#" role="button"
-        data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-            <img src="{{ auth()->user()->profile_photo_url }}" alt="{{ Auth::user()->name }}"
-                class="rounded-circle img-fluid me-2" style="width: 30px;height:30px">
-            {{ Auth::user()->name }}
-        </a>
+        <user-profile-link :init-profile='@json(auth()->user())'></user-profile-link>
 
         <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
             <a class="dropdown-item" href="{{ route('dashboard') }}">
