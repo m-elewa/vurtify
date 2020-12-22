@@ -9,7 +9,6 @@ use App\Actions\Fortify\CreateNewUser;
 use Illuminate\Support\ServiceProvider;
 use App\Actions\Fortify\ResetUserPassword;
 use App\Actions\Fortify\UpdateUserPassword;
-use App\Actions\Fortify\UpdateUserProfileInformation;
 use Illuminate\Http\Request;
 
 class FortifyServiceProvider extends ServiceProvider
@@ -66,7 +65,6 @@ class FortifyServiceProvider extends ServiceProvider
 
         Fortify::createUsersUsing(CreateNewUser::class);
         Fortify::resetUserPasswordsUsing(ResetUserPassword::class);
-        Fortify::updateUserProfileInformationUsing(UpdateUserProfileInformation::class);
         Fortify::updateUserPasswordsUsing(UpdateUserPassword::class);
     }
 }

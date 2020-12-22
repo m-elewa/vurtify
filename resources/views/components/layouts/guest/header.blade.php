@@ -4,7 +4,7 @@
             {{ config('app.name', 'Laravel') }}
         </a>
         <button class="navbar-toggler navbar-toggler-right" type="button" data-bs-toggle="collapse"
-            data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false"
+            data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false"
             aria-label="{{ __('Toggle navigation') }}">
             <span class="navbar-toggler-icon"></span>
         </button>

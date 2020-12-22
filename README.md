@@ -1,6 +1,6 @@
 # Vurtify
 
-Vurtify is a Laravel 8 boilerplate project that gives you the features that Jetstream and Fortify came with, without dealing with the complexity of Jetstream and Tailwind. Instead, we are using Bootstrap 5 and Vue.
+Vurtify is a Laravel 8 boilerplate project that gives you the features that Jetstream and Fortify came with, without dealing with the complexity of Jetstream and Tailwind. Instead, we are using Bootstrap 5 and Vue 3.
 
 ## Basic Features
 
@@ -16,7 +16,7 @@ Vurtify is a Laravel 8 boilerplate project that gives you the features that Jets
 - nice bootstrap 5 design
 - configurable sass design
 - separate design for the guest section and app section
-- ready to work with Vue
+- ready to work with Vue 3
 - Jetstream, tailwind, and livewire got removed completely from the project
 - Clean and easy to understand code
 - Optional ready to use Docker environment to help with the development
@@ -60,7 +60,7 @@ $ php artisan key:generate
 $ composer install
 
 # Install node modules
-$ npm install
+$ npm install --legacy-peer-deps
 
 # Compile the js and sass code
 $ npm run dev
@@ -91,8 +91,8 @@ If using Docker run `make up` to run all Docker containers
 * [Portainer](https://www.portainer.io/)
 
 ## To Do
-- update to Vue 3 and use Typescript
-- add more Vue components
+- Use Typescript
+- Add more Vue components
 - Add Two Factor Authentication
 - Add API support
 - Add Teams system
