@@ -19429,7 +19429,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       "default": function _default() {
         return {
           name: '',
-          profile_photo_url: ''
+          profilePhotoUrl: ''
         };
       }
     }
@@ -19697,7 +19697,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
       return _ctx.$refs.modal.showModal();
     })
   }, [_hoisted_2, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("img", {
-    src: _ctx.profile.profile_photo_url,
+    src: _ctx.profile.profilePhotoUrl,
     alt: _ctx.profile.name,
     "class": "rounded-circle img-thumbnail",
     style: {
@@ -19777,7 +19777,7 @@ var _hoisted_1 = {
 };
 function render(_ctx, _cache, $props, $setup, $data, $options) {
   return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)("a", _hoisted_1, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("img", {
-    src: _ctx.profile.profile_photo_url,
+    src: _ctx.profile.profilePhotoUrl,
     alt: _ctx.profile.name,
     "class": "rounded-circle img-fluid me-2",
     style: {
@@ -19964,9 +19964,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var _axios__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../axios */ "./resources/js/axios.js");
 /* harmony import */ var vue_toastification__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! vue-toastification */ "./node_modules/vue-toastification/dist/esm/index.js");
-/* harmony import */ var lodash__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! lodash */ "./node_modules/lodash/lodash.js");
-/* harmony import */ var lodash__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(lodash__WEBPACK_IMPORTED_MODULE_2__);
-
 
 
 var toast = (0,vue_toastification__WEBPACK_IMPORTED_MODULE_1__.useToast)(); // initial state
@@ -19975,7 +19972,7 @@ var state = function state() {
   return {
     profile: {
       name: '',
-      profile_photo_url: '',
+      profilePhotoUrl: '',
       email: ''
     },
     errors: {

@@ -5,7 +5,7 @@
             {{-- Profile Photo --}}
             <div class="text-center mb-5 col-md-12">
 
-                <update-profile-photo submit-route="{{ route('user-profile-information.update') }}"></update-profile-photo>
+                <update-profile-photo submit-route="{{ route('user-profile-photo.update') }}"></update-profile-photo>
                 <p>
                     <form action="{{ route('profile.delete-profile-photo') }}" method="POST">
                         @csrf
@@ -219,41 +219,4 @@
             </div>
         </form>
     </x-modal> {{-- / logout other browser sessions model --}}
-
-    {{-- profile photo model --}}
-    {{-- <x-modal>
-        <x-slot name="modalId">
-            upload-profile-photo
-        </x-slot>
-        <x-slot name="modalTitle">
-            upload profile photo
-        </x-slot>
-        <x-slot name="modalFooter">
-            <div class="d-grid gap-2 col-4 mx-auto">
-                <button type="button" class="btn btn-primary text-white fw-bold fs-5"
-                    onclick="document.getElementById('upload-profile-photo-form').submit();">Upload</button>
-            </div>
-        </x-slot>
-
-        <form id="upload-profile-photo-form" method="POST"
-            action="{{ route('user-profile-information.update') }}" enctype="multipart/form-data">
-            @csrf
-            @method('PUT')
-            <input type="hidden" class="d-none" name="type" value="photo">
-
-            <div class="input-group has-feedback pb-2">
-                <input id="photo" type="file" class="form-control @error('photo', 'profilePhoto') is-invalid @enderror"
-                    name="photo" required>
-                <label class="input-group-text" for="photo">{{ __('Profile Photo') }}</label>
-
-                @error('photo', 'profilePhoto')
-                    <span class="invalid-feedback" role="alert">
-                        <strong>{{ $message }}</strong>
-                    </span>
-                @enderror
-            </div>
-        </form>
-
-    </x-modal> --}}
-    {{-- / profile photo model --}}
 </x-app-layout>

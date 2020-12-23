@@ -11,7 +11,7 @@ export default {
             default: function () {
                 return {
                     name: '',
-                    profile_photo_url: ''
+                    profilePhotoUrl: ''
                 }
             }
         }
@@ -44,7 +44,7 @@ export default {
 <template>
     <a id="navbarDropdown" class="nav-link dropdown-toggle text-capitalize" href="#" role="button"
         data-bs-toggle="dropdown">
-            <img :src="profile.profile_photo_url" :alt="profile.name"
+            <img :src="profile.profilePhotoUrl" :alt="profile.name"
                 class="rounded-circle img-fluid me-2" style="width: 30px;height:30px">
             {{ profile.name }}
         </a>

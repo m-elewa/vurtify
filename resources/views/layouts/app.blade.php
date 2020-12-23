@@ -18,7 +18,8 @@
 
     <div class="h-100 d-flex flex-column" id="app">
         <!-- Navbar -->
-        <x-layouts.app.header />
+        <x-app.header />
+
         <main>
             <x-layouts.session-alerts />
             {{ $slot }}

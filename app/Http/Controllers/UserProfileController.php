@@ -9,22 +9,20 @@ use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
-use Illuminate\Validation\ValidationException;
 use Jenssegers\Agent\Agent;
+use App\Http\Resources\User as UserResource;
 
 class UserProfileController extends Controller
 {
     /**
      * Show the user profile screen.
      *
-     * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\View\View
      */
-    public function edit(Request $request)
+    public function edit()
     {
         return view('auth.profile', [
-            'request' => $request,
-            'user' => $request->user(),
+            'user' => new UserResource(Auth::user()),
             'sessions' => $this->getSessionsProperty(),
         ]);
     }
@@ -37,7 +35,6 @@ class UserProfileController extends Controller
     public function deleteProfilePhoto()
     {
         Auth::user()->deleteProfilePhoto();
-
         return back()->with('status-success-toast', 'Profile Photo Deleted!');
     }
 
@@ -97,6 +94,7 @@ class UserProfileController extends Controller
                 ->where('user_id', Auth::user()->getAuthIdentifier())
                 ->orderBy('last_activity', 'desc')
                 ->get()
+
         )->map(function ($session) {
             return (object) [
                 'agent' => $this->createAgent($session),

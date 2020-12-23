@@ -39,9 +39,14 @@ Route::group(['middleware' => 'auth:sanctum'], function () {
                 ->name('profile.logout-other-browser-sessions');
 });
 
+// Override Fortify route
 Route::group(['middleware' => config('fortify.middleware', ['web'])], function () {
     // Profile Information...
     Route::put('/user/profile-information', [ProfileInformationController::class, 'update'])
         ->middleware(['auth'])
         ->name('user-profile-information.update');
+
+    Route::put('/user/profile-photo', [ProfileInformationController::class, 'updateProfilePhoto'])
+        ->middleware(['auth'])
+        ->name('user-profile-photo.update');
 });

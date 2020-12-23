@@ -42,7 +42,7 @@ export default {
                 <div class="profile-photo-caption-content text-center text-white"><i class="fas fa-plus fa-3x"></i>
                 </div>
             </div>
-            <img :src="profile.profile_photo_url" :alt="profile.name" class="rounded-circle img-thumbnail"
+            <img :src="profile.profilePhotoUrl" :alt="profile.name" class="rounded-circle img-thumbnail"
                 style="width: 200px;height:200px">
         </div>
 

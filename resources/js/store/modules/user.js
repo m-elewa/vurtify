@@ -1,6 +1,5 @@
 import axios from '../../axios'
 import { useToast } from 'vue-toastification'
-import { defaults } from 'lodash';
 
 const toast = useToast()
 
@@ -8,7 +7,7 @@ const toast = useToast()
 const state = () => ({
   profile: {
       name: '',
-      profile_photo_url: '',
+      profilePhotoUrl: '',
       email: ''
   },
   errors: {
