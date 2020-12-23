@@ -2,11 +2,8 @@
 
 namespace App\Http\Controllers\Fortify;
 
-use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
-use Laravel\Fortify\Contracts\UpdatesUserProfileInformation;
-
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Validation\Rule;
@@ -21,10 +18,6 @@ class ProfileInformationController extends Controller
      */
     public function update(Request $request)
     {
-        // return new JsonResponse([
-        //                 'status' => 'error',
-        //             ]);
-
         if(isset($request->type) && $request->type == "photo"){
             // profile photo validator
             $validator = Validator::make($request->all(), [
@@ -32,30 +25,35 @@ class ProfileInformationController extends Controller
             ]);
 
             if(optional($validator)->fails()){
-                return back()->with('status-fail-toast', 'Please select a valid image file!')
-                    ->withErrors($validator, 'profilePhoto');
+                return response()->json([
+                    'status' => 'error',
+                    'data' => $validator->errors(),
+                ], 422);
             }
 
         } else {
             // account info validator
             $validator = Validator::make($request->all(), [
-                'name' => ['required', 'string', 'max:255', 'min:100'],
+                'name' => ['required', 'string', 'max:255'],
                 'email' => ['required', 'email', 'max:255', Rule::unique('users')->ignore($request->user()->id)],
             ]);
 
             if(optional($validator)->fails()){
-                return $request->wantsJson()
-                    ? new JsonResponse([
+                return response()->json([
                         'status' => 'error',
                         'data' => $validator->errors(),
-                    ])
-                    : back()->withErrors($validator, 'profile');
+                ], 422);
             }
         }
 
         if (isset($request->photo)) {
             $request->user()->updateProfilePhoto($request->photo);
-            return back()->with('status-success-toast', 'Profile photo Uploaded!');
+
+            return response()->json([
+                'status' => 'ok',
+                'message' => 'Profile photo Uploaded!',
+                'data' => $request->user()
+            ]);
         }
 
         if ($request->email !== $request->user()->email &&
@@ -68,13 +66,11 @@ class ProfileInformationController extends Controller
             ])->save();
         }
 
-        return $request->wantsJson()
-            ? new JsonResponse([
+        return response()->json([
                 'status' => 'ok',
                 'message' => 'Profile Updated!',
-                'data' => $request->user()->only(['name', 'email'])
-            ])
-            : back()->with('status-success-toast', 'Profile Updated!');
+                'data' => $request->user()
+            ]);
     }
 
     /**

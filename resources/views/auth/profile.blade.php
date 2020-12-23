@@ -5,18 +5,7 @@
             {{-- Profile Photo --}}
             <div class="text-center mb-5 col-md-12">
 
-                <div class="d-flex align-items-center justify-content-center ">
-                    <div class="profile-photo" style="width: 200px;height:200px" data-bs-toggle="modal"
-                        data-bs-target="#upload-profile-photo">
-                        <div
-                            class="rounded-circle img-thumbnail profile-photo-caption d-flex align-items-center justify-content-center h-100 w-100">
-                            <div class="profile-photo-caption-content text-center text-white"><i
-                                    class="fas fa-plus fa-3x"></i></div>
-                        </div>
-                        <img src="{{ $user->profile_photo_url }}" alt="{{ $user->name }}"
-                            class="rounded-circle img-thumbnail" style="width: 200px;height:200px">
-                    </div>
-                </div>
+                <update-profile-photo submit-route="{{ route('user-profile-information.update') }}"></update-profile-photo>
                 <p>
                     <form action="{{ route('profile.delete-profile-photo') }}" method="POST">
                         @csrf
@@ -232,7 +221,7 @@
     </x-modal> {{-- / logout other browser sessions model --}}
 
     {{-- profile photo model --}}
-    <x-modal>
+    {{-- <x-modal>
         <x-slot name="modalId">
             upload-profile-photo
         </x-slot>
@@ -265,5 +254,6 @@
             </div>
         </form>
 
-    </x-modal> {{-- / profile photo model --}}
+    </x-modal> --}}
+    {{-- / profile photo model --}}
 </x-app-layout>

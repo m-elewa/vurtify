@@ -24,7 +24,7 @@ export default {
 
     data() {
       return {
-        formObject: {
+        profileData: {
             name: '',
             email: ''
         },
@@ -32,19 +32,10 @@ export default {
     },
 
     computed: {
-        ...mapState('user', [
-            'user',
-            'errors'
-        ])
-    },
-
-    watch: {
-        formObject: {
-            deep: true,
-            handler: function(value){
-                this.setUserData(value)
-            }
-      }
+        ...mapState('user', {
+            profile: 'profile',
+            errors: state => state.errors.profileData,
+        })
     },
 
     methods: {
@@ -52,12 +43,12 @@ export default {
             'updateUserProfile'
         ]),
         ...mapMutations('user', [
-            'setUserData'
+            'setUserProfile'
         ])
     },
 
     created() {
-        this.formObject = pick(this.initUser, ['name', 'email'])
+        this.profileData = pick(this.initUser, ['name', 'email'])
     }
 }
 </script>
@@ -68,9 +59,9 @@ export default {
             <h6 class="card-title py-1">
                 Profile Information
             </h6>
-            <form method="POST" @submit.prevent="updateUserProfile(submitRoute)">
+            <form @submit.prevent="updateUserProfile({ submitRoute, profileData })">
                 <div class="custom-form-floating">
-                    <input v-model="formObject.name" placeholder="Name" id="name" type="text" class="form-control" name="name"
+                    <input v-model="profileData.name" placeholder="Name" id="name" type="text" class="form-control" name="name"
                         autocomplete="name" required :class="{ 'is-invalid': errors.name }">
                     <label for="name">Name</label>
 
@@ -80,7 +71,7 @@ export default {
                 </div>
 
                 <div class="custom-form-floating">
-                    <input required v-model="formObject.email" placeholder="Email" id="email" type="text"
+                    <input required v-model="profileData.email" placeholder="Email" id="email" type="text"
                         class="form-control" name="email" autocomplete="email" :class="{ 'is-invalid': errors.email }">
                     <label for="password-confirm">Email</label>
 
