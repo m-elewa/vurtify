@@ -25,7 +25,8 @@ const getters = {
 
 // actions
 const actions = {
-    updateUserProfile ({ commit }, { submitRoute, profileData}) {
+    updateUserProfile ({ commit }, { submitRoute, profileData, loading}) {
+        loading.showLoading()
         commit('setUserProfileDataErrors', {})
 
         axios.put(submitRoute, profileData).then((res)=>{
@@ -48,9 +49,16 @@ const actions = {
                 toast.error('Unknown Server Error!')
                 console.error('catch error data', err)
             }
+        }).finally(() => {
+            loading.hideLoading()
         })
     },
-    updateProfilePhoto ({ commit }, {profilePhoto, submitRoute, modal}) {
+    updateProfilePhoto ({ commit }, {profilePhoto, submitRoute, modal, loading}) {
+        if(!profilePhoto || !profilePhoto.target || !profilePhoto.target.files[0]) {
+            return toast.warning('Please choose a photo!')
+        }
+
+        loading.showLoading()
         commit('setUserProfilePhotoErrors', {})
 
         const formData= new FormData()
@@ -66,6 +74,7 @@ const actions = {
         }).then((res)=>{
             if(res.status === 200) {
                 modal.hideModal()
+                profilePhoto.target.value = null
                 commit('setUserProfilePhotoErrors', {})
                 commit('setUserProfile', res.data.data)
                 toast.success(res.data.message)
@@ -84,6 +93,8 @@ const actions = {
                 toast.error('Unknown Server Error!')
                 console.error('catch error data', err)
             }
+        }).finally(() => {
+            loading.hideLoading()
         })
     }
 }
