@@ -21,7 +21,7 @@ export default {
         hideLoading() {
             setTimeout(() => {
                 this.show = false
-            },1000);
+            },1500)
         },
         toggleLoading() {
             this.show = !this.show
@@ -34,27 +34,52 @@ export default {
 </script>
 
 <template>
-    <div v-show="show" class="overlay">
-        <div class="spinner-border text-light" role="status">
-          <span class="visually-hidden">Loading...</span>
-        </div>
+    <div>
+        <transition
+            enter-active-class="animate__animated animate__rollIn"
+            leave-active-class="animate__animated animate__rollOut"
+        >
+            <div v-show="show" class="overlay">
+                <div class="spinner-border text-light" role="status">
+                    <span class="visually-hidden">Loading...</span>
+                </div>
+            </div>
+        </transition>
+
+        <div v-show="show" class="hiden-overlay"></div>
     </div>
 </template>
 
-<style lang="scss" scoped>
-    .overlay {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        position: absolute;
-        z-index: 1051;
-        background: rgba(39, 42, 43, 0.6);
-        // transition: all 200ms ease-in-out;
-        border-radius: 4px;
-        right: 0;
-        left: 0;
-        top: 0;
-        bottom: 0;
-    }
+<style lang="sass" scoped>
+    .overlay
+        display: flex
+        justify-content: center
+        align-items: center
+        position: absolute
+        z-index: 1052
+        background: rgba(39, 42, 43, 0.6)
+        border-radius: 4px
+        right: 0
+        left: 0
+        top: 0
+        bottom: 0
+
+    .hiden-overlay
+        display: flex
+        justify-content: center
+        align-items: center
+        position: absolute
+        z-index: 1051
+        opacity: 0
+        border-radius: 4px
+        right: 0
+        left: 0
+        top: 0
+        bottom: 0
+
+    .spinner-border
+        width: 5rem
+        height: 5rem
+
 </style>
 

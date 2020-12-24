@@ -2,7 +2,8 @@
         <section class="masthead bg-primary text-white text-center">
             <div class="container d-flex align-items-center flex-column pt-5">
                 <!-- Masthead Avatar Image-->
-                <img class="masthead-avatar my-3" src="{{ asset('images/market-launch-pana.svg') }}" alt="" />
+                <img class="masthead-avatar my-3 animate__animated animate__pulse animate__delay-1s animate__slow animate__infinite"
+                    src="{{ asset('images/market-launch-pana.svg') }}" alt="" />
                 <!-- Masthead Heading-->
                 <h1 class="masthead-heading text-uppercase mb-0">Start Developing</h1>
                 <!-- Icon Divider-->

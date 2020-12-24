@@ -39,7 +39,7 @@ Vurtify is a Laravel 8 boilerplate project that gives you the features that Jets
 
 Via Composer Create-Project
 ```
-composer create-project --prefer-dist m-elewa/vurtify:dev-master blog
+composer create-project --prefer-dist m-elewa/vurtify blog
 ```
 
 Or clone this repository
