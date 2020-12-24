@@ -1,5 +1,6 @@
 import { Toast } from 'bootstrap';
 
+// TODO: convert to Vue
 window.addEventListener("DOMContentLoaded", function(){
     let toastScroll = function () {
         let headerHeight = 75;

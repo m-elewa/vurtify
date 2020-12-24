@@ -1,6 +1,7 @@
 import 'bootstrap'
 import '../navbar'
 import './toasts'
+import './popovers'
 import { createApp } from 'vue'
 import UpdateProfile from './components/UpdateProfile'
 import UserProfileLink from './components/UserProfileLink'

@@ -1,3 +1,4 @@
+// TODO: convert to Vue
 window.addEventListener("DOMContentLoaded", function(){
     let navbarCollapse = function () {
         let nav = document.getElementById("mainNav");

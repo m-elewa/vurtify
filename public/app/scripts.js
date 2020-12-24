@@ -19906,6 +19906,35 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
 
 /***/ }),
 
+/***/ "./resources/js/app/popovers.js":
+/*!**************************************!*\
+  !*** ./resources/js/app/popovers.js ***!
+  \**************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var bootstrap__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! bootstrap */ "./node_modules/bootstrap/dist/js/bootstrap.esm.js");
+ // TODO: convert to Vue
+
+window.addEventListener("load", function () {
+  var deletePhotoButton = document.getElementById('delete-profile-photo');
+  var popover = new bootstrap__WEBPACK_IMPORTED_MODULE_0__.Popover(deletePhotoButton, {
+    html: true,
+    placement: 'auto',
+    sanitize: false,
+    title: '<small>Are you sure you want to delete the profile photo?</small>',
+    content: "<div class=\"text-center\">\n                <button onclick=\"document.getElementById('delete-profile-photo-form').submit()\" class=\"btn btn-danger text-white px-4 fw-bold me-1\">Delete</button>\n                <button id=\"cancel-delete-profile-photo\" class=\"btn btn-primary text-white px-4 fw-bold\">Cancel</button>\n            </div>"
+  });
+  deletePhotoButton.addEventListener("shown.bs.popover", function () {
+    document.getElementById("cancel-delete-profile-photo").addEventListener("click", function () {
+      popover.hide();
+    });
+  });
+});
+
+/***/ }),
+
 /***/ "./resources/js/app/scripts.js":
 /*!*************************************!*\
   !*** ./resources/js/app/scripts.js ***!
@@ -19918,13 +19947,15 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _navbar__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../navbar */ "./resources/js/navbar.js");
 /* harmony import */ var _navbar__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_navbar__WEBPACK_IMPORTED_MODULE_1__);
 /* harmony import */ var _toasts__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./toasts */ "./resources/js/app/toasts.js");
-/* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm-bundler.js");
-/* harmony import */ var _components_UpdateProfile__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./components/UpdateProfile */ "./resources/js/app/components/UpdateProfile.vue");
-/* harmony import */ var _components_UserProfileLink__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./components/UserProfileLink */ "./resources/js/app/components/UserProfileLink.vue");
-/* harmony import */ var _components_UpdateProfilePhoto__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./components/UpdateProfilePhoto */ "./resources/js/app/components/UpdateProfilePhoto.vue");
-/* harmony import */ var _store__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../store */ "./resources/js/store/index.js");
-/* harmony import */ var vue_toastification__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! vue-toastification */ "./node_modules/vue-toastification/dist/esm/index.js");
-/* harmony import */ var vue_toastification_dist_index_css__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! vue-toastification/dist/index.css */ "./node_modules/vue-toastification/dist/index.css");
+/* harmony import */ var _popovers__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./popovers */ "./resources/js/app/popovers.js");
+/* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm-bundler.js");
+/* harmony import */ var _components_UpdateProfile__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./components/UpdateProfile */ "./resources/js/app/components/UpdateProfile.vue");
+/* harmony import */ var _components_UserProfileLink__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./components/UserProfileLink */ "./resources/js/app/components/UserProfileLink.vue");
+/* harmony import */ var _components_UpdateProfilePhoto__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./components/UpdateProfilePhoto */ "./resources/js/app/components/UpdateProfilePhoto.vue");
+/* harmony import */ var _store__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../store */ "./resources/js/store/index.js");
+/* harmony import */ var vue_toastification__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! vue-toastification */ "./node_modules/vue-toastification/dist/esm/index.js");
+/* harmony import */ var vue_toastification_dist_index_css__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! vue-toastification/dist/index.css */ "./node_modules/vue-toastification/dist/index.css");
+
 
 
 
@@ -19937,15 +19968,15 @@ __webpack_require__.r(__webpack_exports__);
 
  // init Vue 3
 
-var app = (0,vue__WEBPACK_IMPORTED_MODULE_3__.createApp)({
+var app = (0,vue__WEBPACK_IMPORTED_MODULE_4__.createApp)({
   components: {
-    UpdateProfile: _components_UpdateProfile__WEBPACK_IMPORTED_MODULE_4__.default,
-    UserProfileLink: _components_UserProfileLink__WEBPACK_IMPORTED_MODULE_5__.default,
-    UpdateProfilePhoto: _components_UpdateProfilePhoto__WEBPACK_IMPORTED_MODULE_6__.default
+    UpdateProfile: _components_UpdateProfile__WEBPACK_IMPORTED_MODULE_5__.default,
+    UserProfileLink: _components_UserProfileLink__WEBPACK_IMPORTED_MODULE_6__.default,
+    UpdateProfilePhoto: _components_UpdateProfilePhoto__WEBPACK_IMPORTED_MODULE_7__.default
   }
 });
-app.use(vue_toastification__WEBPACK_IMPORTED_MODULE_8__.default);
-app.use(_store__WEBPACK_IMPORTED_MODULE_7__.default);
+app.use(vue_toastification__WEBPACK_IMPORTED_MODULE_9__.default);
+app.use(_store__WEBPACK_IMPORTED_MODULE_8__.default);
 app.mount("#app");
 
 /***/ }),
@@ -19959,6 +19990,7 @@ app.mount("#app");
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var bootstrap__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! bootstrap */ "./node_modules/bootstrap/dist/js/bootstrap.esm.js");
+ // TODO: convert to Vue
 
 window.addEventListener("DOMContentLoaded", function () {
   var toastScroll = function toastScroll() {
@@ -20021,6 +20053,7 @@ var http = axios__WEBPACK_IMPORTED_MODULE_0___default().create({
   \********************************/
 /***/ (() => {
 
+// TODO: convert to Vue
 window.addEventListener("DOMContentLoaded", function () {
   var navbarCollapse = function navbarCollapse() {
     var nav = document.getElementById("mainNav");

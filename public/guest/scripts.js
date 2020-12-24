@@ -3069,6 +3069,7 @@ __webpack_require__.r(__webpack_exports__);
   \********************************/
 /***/ (() => {
 
+// TODO: convert to Vue
 window.addEventListener("DOMContentLoaded", function () {
   var navbarCollapse = function navbarCollapse() {
     var nav = document.getElementById("mainNav");

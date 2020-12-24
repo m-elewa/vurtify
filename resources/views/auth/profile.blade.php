@@ -7,10 +7,10 @@
 
                 <update-profile-photo submit-route="{{ route('user-profile-photo.update') }}"></update-profile-photo>
                 <p>
-                    <form action="{{ route('profile.delete-profile-photo') }}" method="POST">
+                    <form id="delete-profile-photo-form" action="{{ route('profile.delete-profile-photo') }}" method="POST">
                         @csrf
                         @method('DELETE')
-                        <button type="submit" class="btn btn-secondary text-white px-4">
+                        <button type="button" id="delete-profile-photo" class="btn btn-secondary text-white px-4" >
                             {{ __('Delete Profile Photo') }}
                         </button>
                     </form>
