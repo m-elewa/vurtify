@@ -1,26 +1,26 @@
 # Vurtify
 
-Vurtify is a Laravel 8 boilerplate project that gives you the features that Jetstream and Fortify came with, without dealing with the complexity of Jetstream and Tailwind. Instead, we are using Bootstrap 5 and Vue 3.
+Vurtify is a Laravel 8 boilerplate project that gives you what you need to start up a web application with Fortify,  Vue 3, and Bootstrap 5.
 
 ## Basic Features
 
-- built on top of Fortify
-- register system
-- reset forgotten password
-- update password
-- update user info
-- profile photo
-- logout other browser sessions
-- delete account
-- email verification
-- nice bootstrap 5 design
-- configurable sass design
-- separate design for the guest section and app section
-- ready to work with Vue 3
-- Jetstream, tailwind, and livewire got removed completely from the project
+- Built on top of Fortify, Vue 3, and Bootstrap 5
+- Using Vuex and Axios for state management and Make XMLHttpRequests
+- Register system
+- Reset forgotten password
+- Update password
+- Update user info
+- Update profile photo
+- Logout other browser sessions
+- Delete account option
+- Email verification
+- Nice bootstrap 5 design with animations
+- Configurable sass design
+- Separate design for the guest section and the app section
+- Jetstream, tailwind, and livewire got removed completely from the project for simplicity
 - Clean and easy to understand code
 - Optional ready to use Docker environment to help with the development
-- helpful Makefile commands
+- Helpful Makefile commands
 - And more...
 
 ## Preview
@@ -32,7 +32,7 @@ Vurtify is a Laravel 8 boilerplate project that gives you the features that Jets
     <img src="https://raw.githubusercontent.com/m-elewa/images/main/Laravel%20-%20dashboard.png" width="80%" height="auto">
     <img src="https://raw.githubusercontent.com/m-elewa/images/main/Laravel%20-%20profile-3.png" width="80%" height="auto">
     <img src="https://raw.githubusercontent.com/m-elewa/images/main/Laravel%20-%20modal.png" width="80%" height="auto">
-    <img src="https://raw.githubusercontent.com/m-elewa/images/main/Laravel%20-%20toast-2.png" width="80%" height="auto">
+    <img src="https://raw.githubusercontent.com/m-elewa/images/main/Laravel%20-%20toast-3.png" width="80%" height="auto">
 </p>
 
 ## Installation
@@ -82,8 +82,12 @@ If using Docker run `make up` to run all Docker containers
 
 ## Great open-source projects used to help build Vurtify
 * [Laravel](https://github.com/laravel/laravel)
+* [Vue](https://github.com/vuejs/vue)
+* [Vuex](https://github.com/vuejs/vuex)
+* [Axios](https://github.com/axios/axios)
 * [Fortify](https://github.com/laravel/fortify)
 * [Bootstrap](https://github.com/twbs/bootstrap)
+* [Vue Toastification](https://github.com/Maronato/vue-toastification)
 * [NGINX](https://www.nginx.com/)
 * [MySQL](https://www.mysql.com/)
 * [PhpMyAdmin](https://www.phpmyadmin.net/)
