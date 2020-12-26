@@ -21,7 +21,7 @@ export default {
         hideLoading() {
             setTimeout(() => {
                 this.show = false
-            },1500)
+            },1000)
         },
         toggleLoading() {
             this.show = !this.show
@@ -36,8 +36,8 @@ export default {
 <template>
     <div>
         <transition
-            enter-active-class="animate__animated animate__rollIn"
-            leave-active-class="animate__animated animate__rollOut"
+            enter-active-class="animate__animated animate__faster animate__zoomIn"
+            leave-active-class="animate__animated animate__faster animate__zoomOut"
         >
             <div v-show="show" class="overlay">
                 <div class="spinner-border text-light" role="status">
